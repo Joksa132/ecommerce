@@ -15,10 +15,13 @@ a {
 }
 
 nav {
-  max-width: 100%;
   background-color: #002242;
   padding: 5px;
   color: white;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  position: fixed;
+  top: 0;
+  width: 100%;
 }
 
 .nav-container {
@@ -49,10 +52,8 @@ nav {
   width: 350px;
   height: 40px;
   border-radius: 20px;
-}
-
-.shop input::placeholder {
-  padding: 7px;
+  padding: 5px 10px;
+  border: 1px solid gray;
 }
 
 .product-menu {
@@ -74,4 +75,72 @@ nav {
   justify-content: center;
   align-items: center;
   gap: 2px;
+}
+
+/* Login and Register pages */
+
+.login,
+.register {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.login-container,
+.register-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  padding: 30px;
+  border-radius: 10px;
+  border: 2px solid #002242;
+}
+
+.login-container-header,
+.register-container-header {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.login-input-container,
+.register-input-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.login-input-container input,
+.register-input-container input {
+  height: 30px;
+  border-radius: 5px;
+  padding: 5px 10px;
+  border: 1px solid gray;
+}
+
+.link-msg {
+  font-size: 1.1rem;
+}
+
+.register-click,
+.login-click {
+  color: blue;
+  font-weight: 500;
+}
+
+.login-button,
+.register-button {
+  background-color: #0064E4;
+  color: white;
+  font-size: 1.2rem;
+  font-weight: 500;
+  border-radius: 5px;
+  margin-top: 10px;
+  height: 30px;
+  cursor: pointer;
 }
