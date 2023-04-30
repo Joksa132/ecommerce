@@ -19,7 +19,7 @@ nav {
   padding: 5px;
   color: white;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-  position: fixed;
+  position: sticky;
   top: 0;
   width: 100%;
 }
@@ -79,16 +79,14 @@ nav {
 
 /* Login and Register pages */
 
-.login,
-.register {
+.outer-container {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
 }
 
-.login-container,
-.register-container {
+.form-container {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -98,8 +96,7 @@ nav {
   border: 2px solid #002242;
 }
 
-.login-container-header,
-.register-container-header {
+.form-container-header {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -107,16 +104,14 @@ nav {
   gap: 10px;
 }
 
-.login-input-container,
-.register-input-container {
+.form-input-container {
   display: flex;
   flex-direction: column;
   gap: 10px;
   margin-top: 20px;
 }
 
-.login-input-container input,
-.register-input-container input {
+.form-input-container input {
   height: 30px;
   border-radius: 5px;
   padding: 5px 10px;
@@ -127,14 +122,12 @@ nav {
   font-size: 1.1rem;
 }
 
-.register-click,
-.login-click {
+.link-click {
   color: blue;
   font-weight: 500;
 }
 
-.login-button,
-.register-button {
+.submit-button {
   background-color: #0064E4;
   color: white;
   font-size: 1.2rem;
