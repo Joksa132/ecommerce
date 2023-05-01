@@ -1,8 +1,6 @@
 import { NextResponse } from 'next/server';
-import { PrismaClient } from '@prisma/client';
 import { hash } from 'bcrypt';
-
-const prisma = new PrismaClient();
+import prisma from '../../../prisma/prisma'
 
 export async function POST(request) {
 
@@ -32,5 +30,5 @@ export async function POST(request) {
     },
   });
 
-  return NextResponse.json({ success: true });
+  return NextResponse.json({ success: true, user });
 }

@@ -15,24 +15,29 @@ export default function Register() {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    const res = await fetch('http://localhost:3000/api/register', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        firstName,
-        lastName,
-        address,
-        phone,
-        email,
-        password
+    try {
+      const res = await fetch('http://localhost:3000/api/register', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          firstName,
+          lastName,
+          address,
+          phone,
+          email,
+          password
+        })
       })
-    })
-    const data = await res.json()
+      const data = await res.json()
 
-    if (data.success) {
-      router.push('/login')
+      if (data.success) {
+        router.push('/login')
+      }
+    }
+    catch (error) {
+      console.log(error)
     }
   }
 
