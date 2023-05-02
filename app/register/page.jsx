@@ -12,6 +12,7 @@ export default function Register() {
   const [phone, setPhone] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const [error, setError] = useState(null)
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -34,6 +35,8 @@ export default function Register() {
 
       if (data.success) {
         router.push('/login')
+      } else {
+        setError(data.error)
       }
     }
     catch (error) {
@@ -97,6 +100,9 @@ export default function Register() {
             required
             onChange={(e) => setPassword(e.target.value)}
           />
+          {error ?
+            <span style={{ color: 'red', fontWeight: "600" }}>{error}</span>
+            : <></>}
           <button className="submit-button">Register</button>
         </form>
       </div>
