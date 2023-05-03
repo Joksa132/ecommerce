@@ -1,14 +1,17 @@
 "use client"
 
 import Link from "next/link"
-import { useState } from "react"
+import { useContext, useState } from "react"
 import { useRouter } from 'next/navigation';
+import { UserContext } from "../context/userContext";
+import Cookies from "js-cookie";
 
 export default function Login() {
   const router = useRouter();
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [error, setError] = useState(null);
+  const { setUser } = useContext(UserContext)
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -27,6 +30,14 @@ export default function Login() {
       if (data.error) {
         setError(data.error);
       } else {
+        const userInfo = {
+          userId: data.userId,
+          email: data.email,
+          firstName: data.firstName,
+          lastName: data.lastName
+        }
+        setUser(userInfo)
+        Cookies.set('user-info', JSON.stringify(userInfo), { expires: 1 })
         router.push('/');
       }
     }
