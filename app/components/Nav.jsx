@@ -1,11 +1,21 @@
+"use client"
+
 import Link from "next/link"
 import Icon from '@mdi/react';
-
-import { mdiMenu } from '@mdi/js';
-import { mdiCartVariant } from '@mdi/js';
-import { mdiAccount } from '@mdi/js';
+import { mdiMenu, mdiCartVariant, mdiAccount } from '@mdi/js';
+import { UserContext } from "../context/userContext";
+import { useContext } from "react";
+import Cookies from "js-cookie";
 
 export default function Nav() {
+  const { user, setUser } = useContext(UserContext)
+
+  const logoutUser = () => {
+    Cookies.remove('token')
+    Cookies.remove('user-info')
+    setUser(null)
+  }
+
   return (
     <nav>
       <div className="nav-container">
@@ -24,10 +34,19 @@ export default function Nav() {
             <Icon path={mdiCartVariant} size={1} />
             <span>Cart</span>
           </Link>
-          <Link href="/login" className="nav-account">
-            <Icon path={mdiAccount} size={1} />
-            <span>Login</span>
-          </Link>
+          {user ?
+            <>
+              <Link href="/profile" className="nav-account">
+                <Icon path={mdiAccount} size={1} />
+                <span>Hey, {user.firstName}</span>
+              </Link>
+              <span style={{ cursor: "pointer" }} onClick={logoutUser}>Logout</span>
+            </> :
+            <Link href="/login" className="nav-account">
+              <Icon path={mdiAccount} size={1} />
+              <span>Login</span>
+            </Link>
+          }
         </div>
       </div>
     </nav>
