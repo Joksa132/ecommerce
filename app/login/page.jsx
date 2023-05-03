@@ -34,11 +34,12 @@ export default function Login() {
           userId: data.userId,
           email: data.email,
           firstName: data.firstName,
-          lastName: data.lastName
+          lastName: data.lastName,
+          role: data.role
         }
         setUser(userInfo)
         Cookies.set('user-info', JSON.stringify(userInfo), { expires: 1 })
-        router.push('/');
+        userInfo.role === "ADMIN" ? router.push('/dashboard/products') : router.push('/');
       }
     }
     catch (error) {

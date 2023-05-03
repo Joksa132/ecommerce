@@ -24,7 +24,8 @@ export async function POST(request) {
     userId: user.id,
     email: user.email,
     firstName: user.firstName,
-    lastName: user.lastName
+    lastName: user.lastName,
+    role: user.role
   }, process.env.JWT_SECRET, {
     expiresIn: '1d',
   })
@@ -35,7 +36,8 @@ export async function POST(request) {
     userId: user.id,
     email: user.email,
     firstName: user.firstName,
-    lastName: user.lastName
+    lastName: user.lastName,
+    role: user.role
   }), {
     status: 200,
     headers: { 'Set-Cookie': `token=${token}; Max-Age=86400; Path=/;` }
