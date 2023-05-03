@@ -31,8 +31,13 @@ export async function POST(request) {
 
   console.log("token", token);
 
-  return new NextResponse(JSON.stringify('cookie-token'), {
+  return new NextResponse(JSON.stringify({
+    userId: user.id,
+    email: user.email,
+    firstName: user.firstName,
+    lastName: user.lastName
+  }), {
     status: 200,
-    headers: { 'Set-Cookie': `token=${token}` }
+    headers: { 'Set-Cookie': `token=${token}; Max-Age=86400; Path=/;` }
   })
 }
