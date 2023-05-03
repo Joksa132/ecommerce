@@ -1,14 +1,19 @@
 "use client"
 
-import { useState, createContext } from "react";
+import { useState, createContext, useEffect } from "react";
 import Cookies from "js-cookie";
 
 export const UserContext = createContext();
 
 export const UserProvider = ({ children }) => {
-  //const [user, setUser] = useState(JSON.parse(Cookies.get('user-info')))
   const userInfo = Cookies.get('user-info');
-  const [user, setUser] = useState(userInfo ? JSON.parse(userInfo) : null);
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    if (userInfo) {
+      setUser(JSON.parse(userInfo))
+    }
+  }, [])
 
   return (
     <UserContext.Provider value={{ user, setUser }}>
