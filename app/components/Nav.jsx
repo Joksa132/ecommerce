@@ -36,10 +36,17 @@ export default function Nav() {
           </Link>
           {user ?
             <>
-              <Link href="/profile" className="nav-account">
-                <Icon path={mdiAccount} size={1} />
-                <span>Hey, {user.firstName}</span>
-              </Link>
+              {user.role === "ADMIN" ?
+                <Link href="/dashboard/products" className="nav-account">
+                  <Icon path={mdiAccount} size={1} />
+                  <span>Admin Dashboard</span>
+                </Link>
+                :
+                <Link href="/profile" className="nav-account">
+                  <Icon path={mdiAccount} size={1} />
+                  <span>Hey, {user.firstName}</span>
+                </Link>
+              }
               <span style={{ cursor: "pointer" }} onClick={logoutUser}>Logout</span>
             </> :
             <Link href="/login" className="nav-account">
