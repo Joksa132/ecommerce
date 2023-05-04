@@ -103,7 +103,7 @@ export default function Register() {
           {error ?
             <span style={{ color: 'red', fontWeight: "600" }}>{error}</span>
             : <></>}
-          <button className="submit-button">Register</button>
+          <button type="submit" className="submit-button">Register</button>
         </form>
       </div>
     </div>
