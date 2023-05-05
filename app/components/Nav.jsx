@@ -10,7 +10,8 @@ import Cookies from "js-cookie";
 export default function Nav() {
   const { user, setUser } = useContext(UserContext)
   const [categories, setCategories] = useState('')
-  const [dropdownOpen, setDropdownOpen] = useState(false)
+  const [productDropdown, setProductDropdown] = useState(false)
+  const [userDropdown, setUserDropdown] = useState(false)
 
   useEffect(() => {
     async function fetchCategories() {
@@ -31,8 +32,12 @@ export default function Nav() {
     fetchCategories()
   }, [])
 
-  const handleDropdown = () => {
-    setDropdownOpen(!dropdownOpen)
+  const handleProductDropdown = () => {
+    setProductDropdown(!productDropdown)
+  }
+
+  const handleUserDropdown = () => {
+    setUserDropdown(!userDropdown)
   }
 
   const logoutUser = () => {
@@ -49,12 +54,12 @@ export default function Nav() {
         </div>
         <div className="shop">
           <div className="product-menu">
-            <div className="product-menu-top" onClick={handleDropdown}>
+            <div className="product-menu-top" onClick={handleProductDropdown}>
               <Icon path={mdiMenu} size={1} />
               <span>Products</span>
             </div>
-            {dropdownOpen ?
-              <div className="product-menu-dropdown">
+            {productDropdown &&
+              <div className="dropdown">
                 {categories.map((category) => (
                   <Link
                     href={"/"}
@@ -65,7 +70,7 @@ export default function Nav() {
                   </Link>
                 ))}
               </div>
-              : <></>
+
             }
           </div>
           <input type="text" placeholder="Search for a product" />
@@ -78,15 +83,27 @@ export default function Nav() {
           {user ?
             <>
               {user.role === "ADMIN" ?
-                <Link href="/dashboard/products" className="nav-account">
+                <div className="nav-account" onClick={handleUserDropdown} style={{ cursor: "pointer" }}>
                   <Icon path={mdiAccount} size={1} />
                   <span>Admin Dashboard</span>
-                </Link>
+                </div>
                 :
-                <Link href="/profile" className="nav-account">
+                <div className="nav-account" onClick={handleUserDropdown} style={{ cursor: "pointer" }}>
                   <Icon path={mdiAccount} size={1} />
                   <span>Hey, {user.firstName}</span>
-                </Link>
+                </div>
+              }
+              {userDropdown &&
+                (user.role === "ADMIN" ?
+                  <div className="dropdown">
+                    <Link href="/dashboard/products" className="dropdown-link">Add Products</Link>
+                    <Link href="/" className="dropdown-link">View Transactions</Link>
+                  </div>
+                  : <div className="dropdown">
+                    <Link href="/" className="dropdown-link">Change Info</Link>
+                    <Link href="/" className="dropdown-link">View Orders</Link>
+                  </div>
+                )
               }
               <span style={{ cursor: "pointer" }} onClick={logoutUser}>Logout</span>
             </> :
