@@ -11,6 +11,7 @@ export default function AdminProducts() {
   const [productCategory, setProductCategory] = useState('')
   const [productImage, setProductImage] = useState(null)
   const [error, setError] = useState(null)
+  const [success, setSuccess] = useState(null)
 
   useEffect(() => {
     async function fetchCategories() {
@@ -49,6 +50,7 @@ export default function AdminProducts() {
         setProductPrice('')
         setProductCategory('')
         setProductImage(null)
+        setSuccess(`Product ${data.product.title} successfully created`)
       } else {
         setError(data.error)
       }
@@ -100,6 +102,10 @@ export default function AdminProducts() {
         {error ?
           <span style={{ color: 'red', fontWeight: "600" }}>{error}</span>
           : <></>}
+        {success ?
+          <span style={{ color: 'green', fontWeight: "600" }}>{success}</span>
+          : <></>
+        }
       </form>
     </div>
   )
