@@ -27,7 +27,7 @@ model User {
 
 model Category {
   id       Int       @id @default(autoincrement())
-  name     String
+  name     String    @unique
   products Product[]
 
   @@map("categories")
@@ -36,9 +36,10 @@ model Category {
 model Product {
   id           Int           @id @default(autoincrement())
   categories   Category[]
+  title        String        @unique
   description  String
   price        Decimal
-  picture      String
+  picture      String?
   transactions Transaction[]
 
   @@map("products")
