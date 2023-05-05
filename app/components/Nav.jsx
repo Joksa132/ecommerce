@@ -4,11 +4,36 @@ import Link from "next/link"
 import Icon from '@mdi/react';
 import { mdiMenu, mdiCartVariant, mdiAccount } from '@mdi/js';
 import { UserContext } from "../context/userContext";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import Cookies from "js-cookie";
 
 export default function Nav() {
   const { user, setUser } = useContext(UserContext)
+  const [categories, setCategories] = useState('')
+  const [dropdownOpen, setDropdownOpen] = useState(false)
+
+  useEffect(() => {
+    async function fetchCategories() {
+      try {
+        const res = await fetch('http://localhost:3000/api/categories', {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+        })
+        const data = await res.json();
+        setCategories(data.categories)
+      }
+      catch (error) {
+        console.log(error)
+      }
+    }
+    fetchCategories()
+  }, [])
+
+  const handleDropdown = () => {
+    setDropdownOpen(!dropdownOpen)
+  }
 
   const logoutUser = () => {
     Cookies.remove('token')
@@ -24,8 +49,24 @@ export default function Nav() {
         </div>
         <div className="shop">
           <div className="product-menu">
-            <Icon path={mdiMenu} size={1} />
-            <span>Products</span>
+            <div className="product-menu-top" onClick={handleDropdown}>
+              <Icon path={mdiMenu} size={1} />
+              <span>Products</span>
+            </div>
+            {dropdownOpen ?
+              <div className="product-menu-dropdown">
+                {categories.map((category) => (
+                  <Link
+                    href={"/"}
+                    key={category.id}
+                    className="dropdown-link"
+                  >
+                    {category.name}
+                  </Link>
+                ))}
+              </div>
+              : <></>
+            }
           </div>
           <input type="text" placeholder="Search for a product" />
         </div>
