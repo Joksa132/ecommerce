@@ -58,10 +58,50 @@ nav {
 
 .product-menu {
   display: flex;
+  flex-direction: column;
+}
+
+.product-menu-top {
+  display: flex;
   justify-content: center;
   align-items: center;
   cursor: pointer;
   gap: 2px;
+}
+
+.product-menu-dropdown {
+  position: absolute;
+  background-color: #002242;
+  margin-top: 47px;
+  padding: 10px 0;
+  z-index: 1;
+  min-width: 100px;
+  border-top: none;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  animation-name: fade-in;
+  animation-duration: 0.5s;
+  animation-timing-function: ease-in-out;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+.dropdown-link {
+  padding: 5px 10px;
+}
+
+.dropdown-link:hover {
+  background-color: #093f86;
 }
 
 .user-options {
