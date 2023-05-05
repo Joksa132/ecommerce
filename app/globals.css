@@ -69,7 +69,7 @@ nav {
   gap: 2px;
 }
 
-.product-menu-dropdown {
+.dropdown {
   position: absolute;
   background-color: #002242;
   margin-top: 47px;
