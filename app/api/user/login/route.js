@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 import { compare } from 'bcrypt';
-import prisma from '../../../prisma/prisma'
+import prisma from '../../../../prisma/prisma'
 import * as jwt from 'jsonwebtoken'
 
 export async function POST(request) {
