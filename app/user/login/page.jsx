@@ -3,7 +3,7 @@
 import Link from "next/link"
 import { useContext, useState } from "react"
 import { useRouter } from 'next/navigation';
-import { UserContext } from "../context/userContext";
+import { UserContext } from "../../context/userContext";
 import Cookies from "js-cookie";
 
 export default function Login() {
@@ -52,7 +52,7 @@ export default function Login() {
       <div className="form-container">
         <div className="form-container-header">
           <h2>Login</h2>
-          <span className="link-msg">Don't have an account? <Link href="/register" className="link-click">Register here!</Link></span>
+          <span className="link-msg">Don't have an account? <Link href="/user/register" className="link-click">Register here!</Link></span>
         </div>
         <form className="form-input-container" onSubmit={handleSubmit}>
           <label htmlFor="email">Email address *</label>

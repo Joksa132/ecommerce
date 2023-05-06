@@ -34,7 +34,7 @@ export default function Register() {
       const data = await res.json()
 
       if (data.success) {
-        router.push('/login')
+        router.push('/user/login')
       } else {
         setError(data.error)
       }
@@ -49,7 +49,7 @@ export default function Register() {
       <div className="form-container">
         <div className="form-container-header">
           <h2>Register</h2>
-          <span className="link-msg">Already have an account? <Link href="/login" className="link-click">Login here!</Link></span>
+          <span className="link-msg">Already have an account? <Link href="/user/login" className="link-click">Login here!</Link></span>
         </div>
         <form className="form-input-container" onSubmit={handleSubmit}>
           <label htmlFor="first-name">First Name *</label>
