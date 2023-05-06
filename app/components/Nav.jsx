@@ -62,7 +62,7 @@ export default function Nav() {
               <div className="dropdown">
                 {categories.map((category) => (
                   <Link
-                    href={"/"}
+                    href={`/${category.name}`}
                     key={category.id}
                     className="dropdown-link"
                   >
