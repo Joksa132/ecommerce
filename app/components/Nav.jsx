@@ -107,7 +107,7 @@ export default function Nav() {
               }
               <span style={{ cursor: "pointer" }} onClick={logoutUser}>Logout</span>
             </> :
-            <Link href="/login" className="nav-account">
+            <Link href="/user/login" className="nav-account">
               <Icon path={mdiAccount} size={1} />
               <span>Login</span>
             </Link>
