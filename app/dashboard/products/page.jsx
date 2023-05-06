@@ -51,6 +51,7 @@ export default function AdminProducts() {
         setProductCategory('')
         setProductImage(null)
         setSuccess(`Product ${data.product.title} successfully created`)
+        setError(null)
       } else {
         setError(data.error)
       }
@@ -72,6 +73,7 @@ export default function AdminProducts() {
           required
           className={styles["form-input"]}
           onChange={(e) => setProductName(e.target.value)}
+          value={productName}
         />
         <label htmlFor='description'>Product description</label>
         <input
@@ -81,6 +83,7 @@ export default function AdminProducts() {
           required
           className={styles["form-input"]}
           onChange={(e) => setProductDesc(e.target.value)}
+          value={productDesc}
         />
         <label htmlFor='price'>Product price</label>
         <input
@@ -90,6 +93,7 @@ export default function AdminProducts() {
           required
           className={styles["form-input"]}
           onChange={(e) => setProductPrice(e.target.value)}
+          value={productPrice}
         />
         <label htmlFor="product-category">Product category</label>
         <select name="product-category" id="product-category" onChange={(e) => setProductCategory(e.target.value)}>
