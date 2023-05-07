@@ -1,11 +1,13 @@
 "use client"
 
-import { useEffect, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import styles from './category.module.css'
+import { UserContext } from "../context/userContext"
 
 export default function CategoryProducts({ params }) {
   const { category } = params
   const [products, setProducts] = useState([])
+  const { user } = useContext(UserContext)
 
   useEffect(() => {
     async function fetchProducts() {
@@ -39,7 +41,15 @@ export default function CategoryProducts({ params }) {
             }
             <p>{product.description}</p>
             <span>{product.price} RSD</span>
-            <button>Add to cart</button>
+            {
+              user.role === "ADMIN" ?
+                <div className={styles["admin-actions"]}>
+                  <button>Edit</button>
+                  <button>Delete</button>
+                </div>
+                :
+                <button>Add to cart</button>
+            }
           </div>
         ))}
       </div>
