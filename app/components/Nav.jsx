@@ -100,7 +100,7 @@ export default function Nav() {
                     <Link href="/" className="dropdown-link">View Transactions</Link>
                   </div>
                   : <div className="dropdown">
-                    <Link href="/" className="dropdown-link">Change Info</Link>
+                    <Link href="/user/info" className="dropdown-link">Change Info</Link>
                     <Link href="/" className="dropdown-link">View Orders</Link>
                   </div>
                 )
