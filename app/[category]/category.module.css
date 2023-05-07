@@ -45,3 +45,9 @@
   border-radius: 15px;
   border: none;
 }
+
+.admin-actions {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
