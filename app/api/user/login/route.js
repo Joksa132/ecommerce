@@ -25,6 +25,8 @@ export async function POST(request) {
     email: user.email,
     firstName: user.firstName,
     lastName: user.lastName,
+    address: user.address,
+    phone: user.phone,
     role: user.role
   }, process.env.JWT_SECRET, {
     expiresIn: '1d',
@@ -37,6 +39,8 @@ export async function POST(request) {
     email: user.email,
     firstName: user.firstName,
     lastName: user.lastName,
+    address: user.address,
+    phone: user.phone,
     role: user.role
   }), {
     status: 200,
