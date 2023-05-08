@@ -1,8 +1,23 @@
 .container {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
   gap: 40px;
   height: 100vh;
+  margin-top: 20px;
+}
+
+.button-container {
+  display: flex;
+  gap: 10px;
+}
+
+.choose-button {
+  background-color: #0064E4;
+  color: white;
+  font-size: 1rem;
+  font-weight: 500;
+  border-radius: 5px;
+  padding: 10px;
+  cursor: pointer;
 }
