@@ -1,110 +1,75 @@
 "use client"
 
-import { useState } from 'react'
+import { useContext, useState } from 'react'
 import styles from './info.module.css'
+import { UserContext } from '@/app/context/userContext'
 
 export default function EditInfo() {
-  const [selectedInfo, setSelectedInfo] = useState(null)
-  let inputElement = null;
+  const { user } = useContext(UserContext)
+  const [firstName, setFirstName] = useState(user.firstName)
+  const [lastName, setLastName] = useState(user.lastName)
+  const [address, setAddress] = useState(user.address)
+  const [phone, setPhone] = useState(user.phone)
+  const [email, setEmail] = useState(user.email)
 
-  const handleButtonClick = (e) => {
-    setSelectedInfo(e.target.value)
-  }
-
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
-  }
 
-  if (selectedInfo) {
-    switch (selectedInfo) {
-      case "email":
-        inputElement = (
-          <input type="email" id={selectedInfo} name={selectedInfo} />
-        );
-        break;
-      case "first-name":
-        inputElement = (
-          <input type="text" id={selectedInfo} name={selectedInfo} />
-        );
-        break;
-      case "last-name":
-        inputElement = (
-          <input type="text" id={selectedInfo} name={selectedInfo} />
-        );
-        break;
-      case "address":
-        inputElement = (
-          <input type="text" id={selectedInfo} name={selectedInfo} />
-        );
-        break;
-      case "phone":
-        inputElement = (
-          <input type="number" id={selectedInfo} name={selectedInfo} />
-        );
-        break;
-      case "password":
-        inputElement = (
-          <input type="password" id={selectedInfo} name={selectedInfo} />
-        );
-        break;
-      default:
-        break;
-    }
   }
 
   return (
     <div className={styles.container}>
-      <h2>Choose which info to change</h2>
-      <div className={styles["button-container"]}>
-        <button
-          className={styles["choose-button"]}
-          value="email"
-          onClick={handleButtonClick}
-        >
-          Email
-        </button>
-        <button
-          className={styles["choose-button"]}
-          value="first-name"
-          onClick={handleButtonClick}
-        >
-          First Name
-        </button>
-        <button
-          className={styles["choose-button"]}
-          value="last-name"
-          onClick={handleButtonClick}
-        >
-          Last Name
-        </button>
-        <button
-          className={styles["choose-button"]}
-          value="address"
-          onClick={handleButtonClick}
-        >
-          Address
-        </button>
-        <button
-          className={styles["choose-button"]}
-          value="phone"
-          onClick={handleButtonClick}
-        >
-          Phone
-        </button>
-        <button
-          className={styles["choose-button"]}
-          value="password"
-          onClick={handleButtonClick}
-        >
-          Password
-        </button>
-      </div>
+
       <div className="form-container">
         <div className="form-container-header">
-          <h2>Edit {selectedInfo}</h2>
+          <h2>Change User Info</h2>
         </div>
         <form className="form-input-container" onSubmit={handleSubmit}>
-          {inputElement}
+          <label htmlFor="first-name">First Name *</label>
+          <input
+            type="text"
+            name="first-name"
+            id="first-name"
+            required
+            onChange={(e) => setFirstName(e.target.value)}
+            value={firstName}
+          />
+          <label htmlFor="last-name">Last Name *</label>
+          <input
+            type="text"
+            name="last-name"
+            id="last-name"
+            required
+            onChange={(e) => setLastName(e.target.value)}
+            value={lastName}
+          />
+          <label htmlFor="address">Address *</label>
+          <input
+            type="text"
+            name="address"
+            id="address"
+            required
+            onChange={(e) => setAddress(e.target.value)}
+            value={address}
+          />
+          <label htmlFor="phone">Phone Number *</label>
+          <input
+            type="number"
+            name="phone"
+            id="phone"
+            required
+            onChange={(e) => setPhone(e.target.value)}
+            value={phone}
+          />
+          <label htmlFor="email">Email Address *</label>
+          <input
+            type="email"
+            name="email"
+            id="email"
+            required
+            onChange={(e) => setEmail(e.target.value)}
+            value={email}
+          />
           <button type='submit' className='submit-button'>Save</button>
         </form>
       </div>
