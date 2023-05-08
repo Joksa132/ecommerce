@@ -5,16 +5,43 @@ import styles from './info.module.css'
 import { UserContext } from '@/app/context/userContext'
 
 export default function EditInfo() {
-  const { user } = useContext(UserContext)
+  const { user, setUser } = useContext(UserContext)
   const [firstName, setFirstName] = useState(user.firstName)
   const [lastName, setLastName] = useState(user.lastName)
   const [address, setAddress] = useState(user.address)
   const [phone, setPhone] = useState(user.phone)
   const [email, setEmail] = useState(user.email)
+  const [success, setSuccess] = useState(null)
 
   const handleSubmit = async (e) => {
     e.preventDefault()
+    try {
+      const res = await fetch(`http://localhost:3000/api/user/edit/${user.userId}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ firstName, lastName, address, phone, email })
+      })
+      const data = await res.json();
 
+      console.log(data)
+
+      const userInfo = {
+        userId: data.updatedUser.userId,
+        email: data.updatedUser.email,
+        firstName: data.updatedUser.firstName,
+        lastName: data.updatedUser.lastName,
+        address: data.updatedUser.address,
+        phone: data.updatedUser.phone,
+        role: data.updatedUser.role
+      }
+      setUser(userInfo)
+      Cookies.set('user-info', JSON.stringify(userInfo), { expires: 1 })
+      setSuccess('User information changed')
+    } catch (error) {
+      console.log(error)
+    }
   }
 
   return (
@@ -71,6 +98,10 @@ export default function EditInfo() {
             value={email}
           />
           <button type='submit' className='submit-button'>Save</button>
+          {success ?
+            <span style={{ color: 'green', fontWeight: "600" }}>{success}</span>
+            : <></>
+          }
         </form>
       </div>
     </div>
