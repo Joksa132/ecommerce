@@ -35,6 +35,8 @@ export default function Login() {
           email: data.email,
           firstName: data.firstName,
           lastName: data.lastName,
+          address: data.address,
+          phone: data.phone,
           role: data.role
         }
         setUser(userInfo)
