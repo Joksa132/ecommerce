@@ -1,7 +1,7 @@
 "use client"
 
 import { useEffect, useState } from 'react'
-import styles from './products.module.css'
+import styles from '../products.module.css'
 
 export default function AdminProducts() {
   const [categories, setCategories] = useState([])
