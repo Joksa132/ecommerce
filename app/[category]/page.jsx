@@ -5,6 +5,7 @@ import styles from './category.module.css'
 import { UserContext } from "../context/userContext"
 import Icon from '@mdi/react';
 import { mdiClose } from '@mdi/js';
+import Link from "next/link";
 
 export default function CategoryProducts({ params }) {
   const { category } = params
@@ -74,7 +75,9 @@ export default function CategoryProducts({ params }) {
             {
               user.role === "ADMIN" ?
                 <div className={styles["admin-actions"]}>
-                  <button>Edit</button>
+                  <Link href={`/dashboard/edit/${product.id}`}>
+                    <button>Edit</button>
+                  </Link>
                   <button onClick={() => handleDelete(product.id)}>Delete</button>
                 </div>
                 :
