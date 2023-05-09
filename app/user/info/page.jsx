@@ -3,14 +3,15 @@
 import { useContext, useState } from 'react'
 import styles from './info.module.css'
 import { UserContext } from '@/app/context/userContext'
+import Cookies from "js-cookie";
 
 export default function EditInfo() {
   const { user, setUser } = useContext(UserContext)
-  const [firstName, setFirstName] = useState(user.firstName)
-  const [lastName, setLastName] = useState(user.lastName)
-  const [address, setAddress] = useState(user.address)
-  const [phone, setPhone] = useState(user.phone)
-  const [email, setEmail] = useState(user.email)
+  const [firstName, setFirstName] = useState(user ? user.firstName : '')
+  const [lastName, setLastName] = useState(user ? user.lastName : '')
+  const [address, setAddress] = useState(user ? user.address : '')
+  const [phone, setPhone] = useState(user ? user.phone : '')
+  const [email, setEmail] = useState(user ? user.email : '')
   const [success, setSuccess] = useState(null)
 
   const handleSubmit = async (e) => {
@@ -25,16 +26,16 @@ export default function EditInfo() {
       })
       const data = await res.json();
 
-      console.log(data)
+      console.log("data", data)
 
       const userInfo = {
-        userId: data.updatedUser.userId,
-        email: data.updatedUser.email,
-        firstName: data.updatedUser.firstName,
-        lastName: data.updatedUser.lastName,
-        address: data.updatedUser.address,
-        phone: data.updatedUser.phone,
-        role: data.updatedUser.role
+        userId: data.userId,
+        email: data.email,
+        firstName: data.firstName,
+        lastName: data.lastName,
+        address: data.address,
+        phone: data.phone,
+        role: data.role
       }
       setUser(userInfo)
       Cookies.set('user-info', JSON.stringify(userInfo), { expires: 1 })
