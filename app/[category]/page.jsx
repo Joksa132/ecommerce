@@ -74,14 +74,19 @@ export default function CategoryProducts({ params }) {
             <span>{product.price} RSD</span>
             {
               user.role === "ADMIN" ?
-                <div className={styles["admin-actions"]}>
+                <div className={styles.actions}>
                   <Link href={`/dashboard/edit/${product.id}`}>
                     <button>Edit</button>
                   </Link>
                   <button onClick={() => handleDelete(product.id)}>Delete</button>
                 </div>
                 :
-                <button>Add to cart</button>
+                <div className={styles.actions}>
+                  <Link href={`/product/${product.id}`}>
+                    <button>View Details</button>
+                  </Link>
+                  <button>Add to Cart</button>
+                </div>
             }
           </div>
         ))}
