@@ -7,11 +7,11 @@ import Cookies from "js-cookie";
 
 export default function EditInfo() {
   const { user, setUser } = useContext(UserContext)
-  const [firstName, setFirstName] = useState(user ? user.firstName : '')
-  const [lastName, setLastName] = useState(user ? user.lastName : '')
-  const [address, setAddress] = useState(user ? user.address : '')
-  const [phone, setPhone] = useState(user ? user.phone : '')
-  const [email, setEmail] = useState(user ? user.email : '')
+  const [firstName, setFirstName] = useState(user?.firstName || '')
+  const [lastName, setLastName] = useState(user?.lastName || '')
+  const [address, setAddress] = useState(user?.address || '')
+  const [phone, setPhone] = useState(user?.phone || '')
+  const [email, setEmail] = useState(user?.email || '')
   const [success, setSuccess] = useState(null)
 
   const handleSubmit = async (e) => {
