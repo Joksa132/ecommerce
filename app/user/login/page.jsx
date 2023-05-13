@@ -24,8 +24,6 @@ export default function Login() {
       })
       const response = await res.json();
 
-      console.log(data)
-
       if (response.error) {
         setError(response.error);
       } else {
