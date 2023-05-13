@@ -3,40 +3,28 @@
 import Link from "next/link"
 import { useState } from "react"
 import { useRouter } from 'next/navigation';
+import { useForm } from 'react-hook-form';
 
 export default function Register() {
   const router = useRouter();
-  const [firstName, setFirstName] = useState('')
-  const [lastName, setLastName] = useState('')
-  const [address, setAddress] = useState('')
-  const [phone, setPhone] = useState('')
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
+  const { register, handleSubmit, formState: { errors } } = useForm();
   const [error, setError] = useState(null)
 
-  const handleSubmit = async (e) => {
-    e.preventDefault()
+  const onSubmit = async (data) => {
     try {
       const res = await fetch('http://localhost:3000/api/user/register', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify({
-          firstName,
-          lastName,
-          address,
-          phone,
-          email,
-          password
-        })
+        body: JSON.stringify(data)
       })
-      const data = await res.json()
+      const response = await res.json()
 
-      if (data.success) {
+      if (response.success) {
         router.push('/user/login')
       } else {
-        setError(data.error)
+        setError(response.error)
       }
     }
     catch (error) {
@@ -51,14 +39,14 @@ export default function Register() {
           <h2>Register</h2>
           <span className="link-msg">Already have an account? <Link href="/user/login" className="link-click">Login here!</Link></span>
         </div>
-        <form className="form-input-container" onSubmit={handleSubmit}>
+        <form className="form-input-container" onSubmit={handleSubmit(onSubmit)}>
           <label htmlFor="first-name">First Name *</label>
           <input
             type="text"
             name="first-name"
             id="first-name"
             required
-            onChange={(e) => setFirstName(e.target.value)}
+            {...register("firstName", { required: true })}
           />
           <label htmlFor="last-name">Last Name *</label>
           <input
@@ -66,7 +54,7 @@ export default function Register() {
             name="last-name"
             id="last-name"
             required
-            onChange={(e) => setLastName(e.target.value)}
+            {...register("lastName", { required: true })}
           />
           <label htmlFor="address">Address *</label>
           <input
@@ -74,7 +62,7 @@ export default function Register() {
             name="address"
             id="address"
             required
-            onChange={(e) => setAddress(e.target.value)}
+            {...register("address", { required: true })}
           />
           <label htmlFor="phone">Phone Number *</label>
           <input
@@ -82,7 +70,7 @@ export default function Register() {
             name="phone"
             id="phone"
             required
-            onChange={(e) => setPhone(e.target.value)}
+            {...register("phone", { required: true })}
           />
           <label htmlFor="email">Email Address *</label>
           <input
@@ -90,7 +78,7 @@ export default function Register() {
             name="email"
             id="email"
             required
-            onChange={(e) => setEmail(e.target.value)}
+            {...register("email", { required: true })}
           />
           <label htmlFor="password">Password *</label>
           <input
@@ -98,7 +86,7 @@ export default function Register() {
             name="password"
             id="password"
             required
-            onChange={(e) => setPassword(e.target.value)}
+            {...register("password", { required: true })}
           />
           {error ?
             <span style={{ color: 'red', fontWeight: "600" }}>{error}</span>
