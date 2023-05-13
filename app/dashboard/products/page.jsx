@@ -1,17 +1,18 @@
 "use client"
 
-import { useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import styles from '../products.module.css'
+import { UserContext } from '@/app/context/userContext'
+import { useForm } from 'react-hook-form';
 
 export default function AdminProducts() {
+  const { user } = useContext(UserContext)
   const [categories, setCategories] = useState([])
-  const [productName, setProductName] = useState('')
-  const [productDesc, setProductDesc] = useState('')
-  const [productPrice, setProductPrice] = useState('')
-  const [productCategory, setProductCategory] = useState('')
-  const [productImage, setProductImage] = useState(null)
+  const { register, handleSubmit, formState: { errors } } = useForm();
   const [error, setError] = useState(null)
   const [success, setSuccess] = useState(null)
+
+  if (user?.role !== "ADMIN") throw new Error("ERROR TEST")
 
   useEffect(() => {
     async function fetchCategories() {
@@ -32,28 +33,22 @@ export default function AdminProducts() {
     fetchCategories()
   }, [])
 
-  const handleSubmit = async (e) => {
-    e.preventDefault()
+  const onSubmit = async (data) => {
     try {
       const res = await fetch('http://localhost:3000/api/products/new', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ productName, productDesc, productPrice, productCategory, productImage })
+        body: JSON.stringify(data)
       })
-      const data = await res.json();
+      const response = await res.json();
 
-      if (data.success) {
-        setProductName('')
-        setProductDesc('')
-        setProductPrice('')
-        setProductCategory('')
-        setProductImage(null)
-        setSuccess(`Product ${data.product.title} successfully created`)
+      if (response.success) {
+        setSuccess(`Product ${response.product.title} successfully created`)
         setError(null)
       } else {
-        setError(data.error)
+        setError(response.error)
       }
     }
     catch (error) {
@@ -63,7 +58,7 @@ export default function AdminProducts() {
 
   return (
     <div className='outer-container'>
-      <form className='form-container' style={{ gap: "10px" }} onSubmit={handleSubmit}>
+      <form className='form-container' style={{ gap: "10px" }} onSubmit={handleSubmit(onSubmit)}>
         <h2>Add a new product</h2>
         <label htmlFor='product-name'>Product name</label>
         <input
@@ -72,8 +67,7 @@ export default function AdminProducts() {
           id="product-name"
           required
           className={styles["form-input"]}
-          onChange={(e) => setProductName(e.target.value)}
-          value={productName}
+          {...register("productName", { required: true })}
         />
         <label htmlFor='description'>Product description</label>
         <input
@@ -82,8 +76,7 @@ export default function AdminProducts() {
           id="description"
           required
           className={styles["form-input"]}
-          onChange={(e) => setProductDesc(e.target.value)}
-          value={productDesc}
+          {...register("productDesc", { required: true })}
         />
         <label htmlFor='price'>Product price</label>
         <input
@@ -92,16 +85,15 @@ export default function AdminProducts() {
           id="price"
           required
           className={styles["form-input"]}
-          onChange={(e) => setProductPrice(e.target.value)}
-          value={productPrice}
+          {...register("productPrice", { required: true })}
         />
         <label htmlFor="product-category">Product category</label>
-        <select name="product-category" id="product-category" onChange={(e) => setProductCategory(e.target.value)}>
+        <select name="product-category" id="product-category" {...register("productCategory", { required: true })}>
           {categories.map((category) => (
             <option key={category.id} value={category.name}>{category.name}</option>
           ))}
         </select>
-        <input type="file" accept="image/*" onChange={(e) => setProductImage(e.target.files[0])} />
+        <input type="file" accept="image/*" {...register("productImage")} />
         <button type="submit" className="submit-button">Submit</button>
         {error ?
           <span style={{ color: 'red', fontWeight: "600" }}>{error}</span>
