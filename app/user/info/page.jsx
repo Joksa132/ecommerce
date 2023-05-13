@@ -1,41 +1,38 @@
 "use client"
 
-import { useContext, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import styles from './info.module.css'
 import { UserContext } from '@/app/context/userContext'
 import Cookies from "js-cookie";
+import { useForm } from 'react-hook-form';
 
 export default function EditInfo() {
   const { user, setUser } = useContext(UserContext)
-  const [firstName, setFirstName] = useState(user?.firstName || '')
-  const [lastName, setLastName] = useState(user?.lastName || '')
-  const [address, setAddress] = useState(user?.address || '')
-  const [phone, setPhone] = useState(user?.phone || '')
-  const [email, setEmail] = useState(user?.email || '')
+  const { register, handleSubmit, formState: { errors } } = useForm();
   const [success, setSuccess] = useState(null)
+  const [userData, setUserData] = useState(user)
 
-  const handleSubmit = async (e) => {
-    e.preventDefault()
+  const onSubmit = async (data) => {
     try {
       const res = await fetch(`http://localhost:3000/api/user/edit/${user.userId}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ firstName, lastName, address, phone, email })
+        body: JSON.stringify(data)
       })
-      const data = await res.json();
+      const response = await res.json();
 
       console.log("data", data)
 
       const userInfo = {
-        userId: data.userId,
-        email: data.email,
-        firstName: data.firstName,
-        lastName: data.lastName,
-        address: data.address,
-        phone: data.phone,
-        role: data.role
+        userId: response.userId,
+        email: response.email,
+        firstName: response.firstName,
+        lastName: response.lastName,
+        address: response.address,
+        phone: response.phone,
+        role: response.role
       }
       setUser(userInfo)
       Cookies.set('user-info', JSON.stringify(userInfo), { expires: 1 })
@@ -47,20 +44,20 @@ export default function EditInfo() {
 
   return (
     <div className={styles.container}>
-
       <div className="form-container">
         <div className="form-container-header">
           <h2>Change User Info</h2>
         </div>
-        <form className="form-input-container" onSubmit={handleSubmit}>
+        <form className="form-input-container" onSubmit={handleSubmit(onSubmit)}>
           <label htmlFor="first-name">First Name *</label>
           <input
             type="text"
             name="first-name"
             id="first-name"
             required
-            onChange={(e) => setFirstName(e.target.value)}
-            value={firstName}
+            {...register("firstName", { required: true })}
+            value={userData.firstName}
+            onChange={(e) => setUserData({ ...userData, firstName: e.target.value })}
           />
           <label htmlFor="last-name">Last Name *</label>
           <input
@@ -68,8 +65,9 @@ export default function EditInfo() {
             name="last-name"
             id="last-name"
             required
-            onChange={(e) => setLastName(e.target.value)}
-            value={lastName}
+            {...register("lastName", { required: true })}
+            value={userData.lastName}
+            onChange={(e) => setUserData({ ...userData, lastName: e.target.value })}
           />
           <label htmlFor="address">Address *</label>
           <input
@@ -77,8 +75,9 @@ export default function EditInfo() {
             name="address"
             id="address"
             required
-            onChange={(e) => setAddress(e.target.value)}
-            value={address}
+            {...register("address", { required: true })}
+            value={userData.address}
+            onChange={(e) => setUserData({ ...userData, address: e.target.value })}
           />
           <label htmlFor="phone">Phone Number *</label>
           <input
@@ -86,8 +85,9 @@ export default function EditInfo() {
             name="phone"
             id="phone"
             required
-            onChange={(e) => setPhone(e.target.value)}
-            value={phone}
+            {...register("phone", { required: true })}
+            value={userData.phone}
+            onChange={(e) => setUserData({ ...userData, phone: e.target.value })}
           />
           <label htmlFor="email">Email Address *</label>
           <input
@@ -95,8 +95,9 @@ export default function EditInfo() {
             name="email"
             id="email"
             required
-            onChange={(e) => setEmail(e.target.value)}
-            value={email}
+            {...register("email", { required: true })}
+            value={userData.email}
+            onChange={(e) => setUserData({ ...userData, email: e.target.value })}
           />
           <button type='submit' className='submit-button'>Save</button>
           {success ?
