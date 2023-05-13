@@ -5,39 +5,38 @@ import { useContext, useState } from "react"
 import { useRouter } from 'next/navigation';
 import { UserContext } from "../../context/userContext";
 import Cookies from "js-cookie";
+import { useForm } from 'react-hook-form';
 
 export default function Login() {
   const router = useRouter();
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
+  const { register, handleSubmit, formState: { errors } } = useForm();
   const [error, setError] = useState(null);
   const { setUser } = useContext(UserContext)
 
-  const handleSubmit = async (e) => {
-    e.preventDefault()
+  const onSubmit = async (data) => {
     try {
       const res = await fetch('http://localhost:3000/api/user/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ email, password })
+        body: JSON.stringify(data)
       })
-      const data = await res.json();
+      const response = await res.json();
 
       console.log(data)
 
-      if (data.error) {
-        setError(data.error);
+      if (response.error) {
+        setError(response.error);
       } else {
         const userInfo = {
-          userId: data.userId,
-          email: data.email,
-          firstName: data.firstName,
-          lastName: data.lastName,
-          address: data.address,
-          phone: data.phone,
-          role: data.role
+          userId: response.userId,
+          email: response.email,
+          firstName: response.firstName,
+          lastName: response.lastName,
+          address: response.address,
+          phone: response.phone,
+          role: response.role
         }
         setUser(userInfo)
         Cookies.set('user-info', JSON.stringify(userInfo), { expires: 1 })
@@ -56,14 +55,14 @@ export default function Login() {
           <h2>Login</h2>
           <span className="link-msg">Don't have an account? <Link href="/user/register" className="link-click">Register here!</Link></span>
         </div>
-        <form className="form-input-container" onSubmit={handleSubmit}>
+        <form className="form-input-container" onSubmit={handleSubmit(onSubmit)}>
           <label htmlFor="email">Email address *</label>
           <input
             type="text"
             name="email"
             id="email"
             required
-            onChange={(e) => setEmail(e.target.value)}
+            {...register("email", { required: true })}
           />
           <label htmlFor="password">Password *</label>
           <input
@@ -71,8 +70,9 @@ export default function Login() {
             name="password"
             id="password"
             required
-            onChange={(e) => setPassword(e.target.value)}
+            {...register("password", { required: true })}
           />
+          {errors.password && <span style={{ color: 'red', fontWeight: "600" }}>Please enter a password</span>}
           {error ?
             <span style={{ color: 'red', fontWeight: "600" }}>{error}</span>
             : <></>}
