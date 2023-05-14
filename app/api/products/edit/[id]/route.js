@@ -21,7 +21,7 @@ export async function PUT(request) {
       title: productName,
       description: productDesc,
       price: productPrice,
-      picture: productImage,
+      //picture: productImage,
       categories: {
         connect: {
           id: category.id
