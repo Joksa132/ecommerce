@@ -82,7 +82,7 @@ export default function CategoryProducts({ params }) {
                 </div>
                 :
                 <div className={styles.actions}>
-                  <Link href={`/product/${product.id}`}>
+                  <Link href={`/${category}/${product.id}`}>
                     <button>View Details</button>
                   </Link>
                   <button>Add to Cart</button>
