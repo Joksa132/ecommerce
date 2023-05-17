@@ -6,11 +6,13 @@ import { UserContext } from "../context/userContext"
 import Icon from '@mdi/react';
 import { mdiClose } from '@mdi/js';
 import Link from "next/link";
+import { CartContext } from "../context/cartContext";
 
 export default function CategoryProducts({ params }) {
   const { category } = params
   const [products, setProducts] = useState([])
   const { user } = useContext(UserContext)
+  const { cartProducts, addToCart } = useContext(CartContext)
   const [message, setMessage] = useState(null)
 
   useEffect(() => {
@@ -85,7 +87,7 @@ export default function CategoryProducts({ params }) {
                   <Link href={`/${category}/${product.id}`}>
                     <button>View Details</button>
                   </Link>
-                  <button>Add to Cart</button>
+                  <button onClick={() => addToCart(product)}>Add to Cart</button>
                 </div>
             }
           </div>
