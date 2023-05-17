@@ -12,7 +12,7 @@ export default function CategoryProducts({ params }) {
   const { category } = params
   const [products, setProducts] = useState([])
   const { user } = useContext(UserContext)
-  const { cartProducts, addToCart } = useContext(CartContext)
+  const { cartProducts, addToCart, removeFromCart } = useContext(CartContext)
   const [message, setMessage] = useState(null)
 
   useEffect(() => {
@@ -53,7 +53,7 @@ export default function CategoryProducts({ params }) {
   }
 
   return (
-    <div className={styles.container}>
+    <div className="card-outer-container">
       <h1 style={{ marginTop: "20px" }}>{category}</h1>
       {message ?
         <div className={styles["message-container"]}>
@@ -65,9 +65,9 @@ export default function CategoryProducts({ params }) {
             onClick={() => setMessage(null)}
           />
         </div> : <></>}
-      <div className={styles['card-container']}>
+      <div className='card-container'>
         {products.map(product => (
-          <div className={styles.card} key={product.id}>
+          <div className="card" key={product.id}>
             <span>{product.title}</span>
             {product.picture &&
               <img src="" alt="" />
@@ -76,18 +76,22 @@ export default function CategoryProducts({ params }) {
             <span>{product.price} RSD</span>
             {
               user.role === "ADMIN" ?
-                <div className={styles.actions}>
+                <div className="card-actions">
                   <Link href={`/dashboard/edit/${product.id}`}>
                     <button>Edit</button>
                   </Link>
                   <button onClick={() => handleDelete(product.id)}>Delete</button>
                 </div>
                 :
-                <div className={styles.actions}>
+                <div className="card-actions">
                   <Link href={`/${category}/${product.id}`}>
                     <button>View Details</button>
                   </Link>
-                  <button onClick={() => addToCart(product)}>Add to Cart</button>
+                  {
+                    cartProducts.some((item) => item.id === product.id) ?
+                      <button onClick={() => removeFromCart(product.id)}>Remove from Cart</button>
+                      : <button onClick={() => addToCart(product)}>Add to Cart</button>
+                  }
                 </div>
             }
           </div>
