@@ -243,7 +243,8 @@ nav {
   margin-bottom: 15px;
 }
 
-.card button {
+.card button,
+.empty-cart button {
   padding: 10px 20px;
   font-size: 1rem;
   background-color: #3498db;
@@ -251,6 +252,19 @@ nav {
   cursor: pointer;
   border-radius: 15px;
   border: none;
+}
+
+.empty-cart {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.empty-cart span {
+  font-size: 1.2rem;
+  text-align: center;
+  font-weight: bold;
 }
 
 .card-actions {
