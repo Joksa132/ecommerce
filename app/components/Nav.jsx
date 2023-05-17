@@ -6,9 +6,11 @@ import { mdiMenu, mdiCartVariant, mdiAccount } from '@mdi/js';
 import { UserContext } from "../context/userContext";
 import { useContext, useEffect, useState } from "react";
 import Cookies from "js-cookie";
+import { CartContext } from "../context/cartContext";
 
 export default function Nav() {
   const { user, setUser } = useContext(UserContext)
+  const { cartProducts } = useContext(CartContext)
   const [categories, setCategories] = useState('')
   const [productDropdown, setProductDropdown] = useState(false)
   const [userDropdown, setUserDropdown] = useState(false)
@@ -77,6 +79,7 @@ export default function Nav() {
         </div>
         <div className="user-options">
           <Link href="/cart" className="nav-cart">
+            <span>{cartProducts.length ? cartProducts.length : <></>}</span>
             <Icon path={mdiCartVariant} size={1} />
             <span>Cart</span>
           </Link>
