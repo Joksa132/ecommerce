@@ -1,11 +1,13 @@
 "use client"
 
-import { useEffect, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import styles from './product.module.css'
+import { CartContext } from "@/app/context/cartContext"
 
 export default function ProductDetails({ params }) {
   const { id } = params
   const [product, setProduct] = useState({})
+  const { cartProducts, addToCart, removeFromCart } = useContext(CartContext)
 
   useEffect(() => {
     async function fetchProduct() {
@@ -36,7 +38,11 @@ export default function ProductDetails({ params }) {
         <h2 style={{ marginBottom: "30px" }}>{product.title}</h2>
         <p style={{ marginBottom: "30px" }}>Description: {product.description}</p>
         <span>Price: {product.price} RSD</span>
-        <button className={styles["cart-button"]}>Add to Cart</button>
+        {
+          cartProducts.some((item) => item.id === product.id) ?
+            <button onClick={() => removeFromCart(product.id)} className={styles["cart-button"]}>Remove from Cart</button>
+            : <button onClick={() => addToCart(product)} className={styles["cart-button"]}>Add to Cart</button>
+        }
       </div>
     </div>
   )
