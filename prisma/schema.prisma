@@ -47,10 +47,11 @@ model Product {
 }
 
 model Transaction {
-  id       Int       @id @default(autoincrement())
-  user     User      @relation(fields: [userId], references: [id])
+  id       Int               @id @default(autoincrement())
+  user     User              @relation(fields: [userId], references: [id])
   userId   Int
-  date     DateTime  @default(now())
+  date     DateTime          @default(now())
+  status   TransactionStatus @default(PENDING)
   products Product[]
 
   @@map("transactions")
@@ -59,4 +60,10 @@ model Transaction {
 enum Role {
   USER
   ADMIN
+}
+
+enum TransactionStatus {
+  PENDING
+  ACCEPTED
+  DENIED
 }
