@@ -203,7 +203,7 @@ nav {
   transform: translate(-50%, -50%);
 }
 
-/* Cart stuff */
+/* Card stuff */
 
 .card-outer-container {
   display: flex;
@@ -244,7 +244,8 @@ nav {
 }
 
 .card button,
-.empty-cart button {
+.empty-cart button,
+.total-price button {
   padding: 10px 20px;
   font-size: 1rem;
   background-color: #3498db;
@@ -271,4 +272,24 @@ nav {
   display: flex;
   justify-content: center;
   gap: 10px;
+}
+
+.total-price {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.total-price span {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.product-quantity {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  font-size: 1.2rem;
+  margin-top: 20px;
 }
