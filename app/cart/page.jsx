@@ -9,6 +9,7 @@ export default function Cart() {
   const { cartProducts, removeFromCart } = useContext(CartContext)
   const [productQuantities, setProductQuantities] = useState({})
   const { user } = useContext(UserContext)
+  const [successMessage, setSuccessMessage] = useState(null)
 
   const handleQuantityChange = (event, productId) => {
     const newQuantities = { ...productQuantities }
@@ -26,6 +27,36 @@ export default function Cart() {
     return totalPrice;
   }
 
+  const handleOrderClick = async () => {
+    try {
+      const products = cartProducts.map((product) => ({
+        ...product,
+        quantity: productQuantities[product.id] || 1,
+      }))
+
+      const res = await fetch('http://localhost:3000/api/transactions', {
+        method: "POST",
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          userId: user.userId,
+          products
+        })
+      })
+      const data = await res.json();
+      console.log(data)
+
+      if (data.success) {
+        cartProducts.forEach((product) => removeFromCart(product.id))
+        setSuccessMessage("Order successfully created");
+      }
+
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
   return (
     <div className="card-outer-container">
       <h1 style={{ marginTop: "20px" }}>Cart</h1>
@@ -33,7 +64,7 @@ export default function Cart() {
         <>
           <div className="total-price">
             <span>Total Price: {calculateTotalPrice()} RSD</span>
-            <button>Order</button>
+            <button onClick={handleOrderClick}>Order</button>
           </div>
           <div className="card-container">
             {cartProducts.map(product => (
@@ -64,10 +95,20 @@ export default function Cart() {
           </div>
         </>
         : <div className="empty-cart">
-          <span>Your Cart is currently empty</span>
-          <Link href={"/"}>
-            <button>Return to home page</button>
-          </Link>
+          {successMessage ?
+            <>
+              <span>{successMessage}</span>
+              <Link href={"/orders"}>
+                <button>Track your order status</button>
+              </Link>
+            </> :
+            <>
+              <span>Your Cart is currently empty</span>
+              <Link href={"/"}>
+                <button>Return to home page</button>
+              </Link>
+            </>
+          }
         </div>
       }
     </div>
