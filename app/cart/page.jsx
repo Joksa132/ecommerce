@@ -34,7 +34,7 @@ export default function Cart() {
         quantity: productQuantities[product.id] || 1,
       }))
 
-      const res = await fetch('http://localhost:3000/api/transactions', {
+      const res = await fetch('http://localhost:3000/api/transactions/new', {
         method: "POST",
         headers: {
           'Content-Type': 'application/json',
