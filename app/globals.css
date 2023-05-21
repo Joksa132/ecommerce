@@ -293,3 +293,55 @@ nav {
   font-size: 1.2rem;
   margin-top: 20px;
 }
+
+/* Orders/Transactions pages */
+
+.orders-container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.orders-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+}
+
+.orders-table th,
+.orders-table td {
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+}
+
+.orders-table th {
+  background-color: #f2f2f2;
+}
+
+.orders-table td {
+  text-align: center;
+}
+
+.orders-table tbody tr:hover {
+  background-color: #eaeaea;
+}
+
+.orders-table select {
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+}
+
+.orders-table button {
+  padding: 0.5rem 1rem;
+  margin-left: 0.5rem;
+  background-color: #3498db;
+  color: #fff;
+  cursor: pointer;
+}
+
+.orders-table button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
