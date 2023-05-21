@@ -48,7 +48,7 @@ export default function UserOrders() {
                 <tr key={product.transactionId + product.title}>
                   <td>{transaction.id}</td>
                   <td>{product.title}</td>
-                  <td>{product.price}</td>
+                  <td>{product.price} RSD</td>
                   <td>{product.quantity}</td>
                   <td>{transaction.status}</td>
                 </tr>
