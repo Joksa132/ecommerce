@@ -100,11 +100,11 @@ export default function Nav() {
                 (user.role === "ADMIN" ?
                   <div className="dropdown">
                     <Link href="/dashboard/products" className="dropdown-link">Add Products</Link>
-                    <Link href="/" className="dropdown-link">View Transactions</Link>
+                    <Link href="/dashboard/transactions" className="dropdown-link">View Transactions</Link>
                   </div>
                   : <div className="dropdown">
                     <Link href="/user/info" className="dropdown-link">Change Info</Link>
-                    <Link href="/" className="dropdown-link">View Orders</Link>
+                    <Link href="/orders" className="dropdown-link">View Orders</Link>
                   </div>
                 )
               }
