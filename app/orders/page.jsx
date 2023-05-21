@@ -39,6 +39,7 @@ export default function UserOrders() {
               <th>Product Title</th>
               <th>Price</th>
               <th>Quantity</th>
+              <th>Total Price</th>
               <th>Status</th>
             </tr>
           </thead>
@@ -50,6 +51,7 @@ export default function UserOrders() {
                   <td>{product.title}</td>
                   <td>{product.price} RSD</td>
                   <td>{product.quantity}</td>
+                  <td>{product.quantity * product.price} RSD</td>
                   <td>{transaction.status}</td>
                 </tr>
               ))
