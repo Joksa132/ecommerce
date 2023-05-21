@@ -33,7 +33,7 @@ export default function SearchResults() {
     }
 
     fetchProducts()
-  }, [])
+  }, [productQuery])
 
   const handleDelete = async (id) => {
     try {
