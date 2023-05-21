@@ -2,7 +2,6 @@
 
 import { useContext, useEffect, useState } from "react"
 import { UserContext } from "../context/userContext"
-import styles from './orders.module.css'
 
 export default function UserOrders() {
   const { user } = useContext(UserContext)
