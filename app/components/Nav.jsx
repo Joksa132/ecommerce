@@ -7,6 +7,7 @@ import { UserContext } from "../context/userContext";
 import { useContext, useEffect, useState } from "react";
 import Cookies from "js-cookie";
 import { CartContext } from "../context/cartContext";
+import { useRouter } from "next/navigation";
 
 export default function Nav() {
   const { user, setUser } = useContext(UserContext)
@@ -14,6 +15,8 @@ export default function Nav() {
   const [categories, setCategories] = useState('')
   const [productDropdown, setProductDropdown] = useState(false)
   const [userDropdown, setUserDropdown] = useState(false)
+  const [searchProduct, setSearchProduct] = useState('')
+  const router = useRouter()
 
   useEffect(() => {
     async function fetchCategories() {
@@ -48,6 +51,11 @@ export default function Nav() {
     setUser(null)
   }
 
+  const handleSearch = (e) => {
+    e.preventDefault();
+    router.push(`/search?product=${searchProduct}`);
+  };
+
   return (
     <nav>
       <div className="nav-container">
@@ -72,10 +80,15 @@ export default function Nav() {
                   </Link>
                 ))}
               </div>
-
             }
           </div>
-          <input type="text" placeholder="Search for a product" />
+          <form onSubmit={(e) => handleSearch(e)}>
+            <input
+              type="text"
+              placeholder="Search for a product"
+              onChange={(e) => setSearchProduct(e.target.value)}
+            />
+          </form>
         </div>
         <div className="user-options">
           {user ?
