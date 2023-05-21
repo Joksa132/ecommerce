@@ -78,11 +78,6 @@ export default function Nav() {
           <input type="text" placeholder="Search for a product" />
         </div>
         <div className="user-options">
-          <Link href="/cart" className="nav-cart">
-            <span>{cartProducts.length ? cartProducts.length : <></>}</span>
-            <Icon path={mdiCartVariant} size={1} />
-            <span>Cart</span>
-          </Link>
           {user ?
             <>
               {user.role === "ADMIN" ?
@@ -91,10 +86,17 @@ export default function Nav() {
                   <span>Admin Dashboard</span>
                 </div>
                 :
-                <div className="nav-account" onClick={handleUserDropdown} style={{ cursor: "pointer" }}>
-                  <Icon path={mdiAccount} size={1} />
-                  <span>Hey, {user.firstName}</span>
-                </div>
+                <>
+                  <Link href="/cart" className="nav-cart">
+                    <span>{cartProducts.length ? cartProducts.length : <></>}</span>
+                    <Icon path={mdiCartVariant} size={1} />
+                    <span>Cart</span>
+                  </Link>
+                  <div className="nav-account" onClick={handleUserDropdown} style={{ cursor: "pointer" }}>
+                    <Icon path={mdiAccount} size={1} />
+                    <span>Hey, {user.firstName}</span>
+                  </div>
+                </>
               }
               {userDropdown &&
                 (user.role === "ADMIN" ?
