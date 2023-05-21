@@ -64,7 +64,7 @@ export default function SearchResults() {
             }
             <p>{product.description}</p>
             <span>{product.price} RSD</span>
-            {
+            {user ?
               user.role === "ADMIN" ?
                 <div className="card-actions">
                   <Link href={`/dashboard/edit/${product.id}`}>
@@ -82,7 +82,10 @@ export default function SearchResults() {
                       <button onClick={() => removeFromCart(product.id)}>Remove from Cart</button>
                       : <button onClick={() => addToCart(product)}>Add to Cart</button>
                   }
-                </div>
+                </div> :
+              <Link href={'/user/login'}>
+                <button>Login for Actions</button>
+              </Link>
             }
           </div>
         ))}
