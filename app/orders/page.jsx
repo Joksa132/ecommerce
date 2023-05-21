@@ -30,10 +30,10 @@ export default function UserOrders() {
   }, [])
 
   return (
-    <div className={styles["orders-container"]}>
+    <div className="orders-container">
       <h1>Your orders</h1>
       {transactionInfo.length > 0 ? (
-        <table className={styles["orders-table"]}>
+        <table className="orders-table">
           <thead>
             <tr>
               <th>Transaction ID</th>
