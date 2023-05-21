@@ -54,45 +54,47 @@ export default function SearchResults() {
 
   return (
     <div className='card-outer-container'>
+      <h1 style={{ marginTop: "20px" }}>Search results for {productQuery}</h1>
       {products.length ?
-        <h1 style={{ marginTop: "20px" }}>Search results for {productQuery}</h1> :
-        <h1 style={{ marginTop: "20px" }}>No search results for {productQuery}</h1>
+        <div className='card-container'>
+          {products.map(product => (
+            <div className="card" key={product.id}>
+              <span>{product.title}</span>
+              {product.picture &&
+                <img src="" alt="" />
+              }
+              <p>{product.description}</p>
+              <span>{product.price} RSD</span>
+              {user ?
+                user.role === "ADMIN" ?
+                  <div className="card-actions">
+                    <Link href={`/dashboard/edit/${product.id}`}>
+                      <button>Edit</button>
+                    </Link>
+                    <button onClick={() => handleDelete(product.id)}>Delete</button>
+                  </div>
+                  :
+                  <div className="card-actions">
+                    <Link href={`${product.categories[0].name}/${product.id}`}>
+                      <button>View Details</button>
+                    </Link>
+                    {
+                      cartProducts.some((item) => item.id === product.id) ?
+                        <button onClick={() => removeFromCart(product.id)}>Remove from Cart</button>
+                        : <button onClick={() => addToCart(product)}>Add to Cart</button>
+                    }
+                  </div> :
+                <Link href={'/user/login'}>
+                  <button>Login for Actions</button>
+                </Link>
+              }
+            </div>
+          ))}
+        </div> :
+        <div style={{ fontSize: "2rem", marginTop: "30px" }}>
+          No products matching <span style={{ fontWeight: "bold" }}>{productQuery}</span>
+        </div>
       }
-      <div className='card-container'>
-        {products.map(product => (
-          <div className="card" key={product.id}>
-            <span>{product.title}</span>
-            {product.picture &&
-              <img src="" alt="" />
-            }
-            <p>{product.description}</p>
-            <span>{product.price} RSD</span>
-            {user ?
-              user.role === "ADMIN" ?
-                <div className="card-actions">
-                  <Link href={`/dashboard/edit/${product.id}`}>
-                    <button>Edit</button>
-                  </Link>
-                  <button onClick={() => handleDelete(product.id)}>Delete</button>
-                </div>
-                :
-                <div className="card-actions">
-                  <Link href={`${product.categories[0].name}/${product.id}`}>
-                    <button>View Details</button>
-                  </Link>
-                  {
-                    cartProducts.some((item) => item.id === product.id) ?
-                      <button onClick={() => removeFromCart(product.id)}>Remove from Cart</button>
-                      : <button onClick={() => addToCart(product)}>Add to Cart</button>
-                  }
-                </div> :
-              <Link href={'/user/login'}>
-                <button>Login for Actions</button>
-              </Link>
-            }
-          </div>
-        ))}
-      </div>
     </div>
   )
 }
