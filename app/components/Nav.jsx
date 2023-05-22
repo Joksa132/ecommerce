@@ -69,7 +69,7 @@ export default function Nav() {
               <span>Products</span>
             </div>
             {productDropdown &&
-              <div className="dropdown">
+              <div className="products-dropdown">
                 {categories.map((category) => (
                   <Link
                     href={`/${category.name}`}
@@ -113,11 +113,11 @@ export default function Nav() {
               }
               {userDropdown &&
                 (user.role === "ADMIN" ?
-                  <div className="dropdown">
+                  <div className="user-dropdown">
                     <Link href="/dashboard/products" className="dropdown-link">Add Products</Link>
                     <Link href="/dashboard/transactions" className="dropdown-link">View Transactions</Link>
                   </div>
-                  : <div className="dropdown">
+                  : <div className="user-dropdown">
                     <Link href="/user/info" className="dropdown-link">Change Info</Link>
                     <Link href="/orders" className="dropdown-link">View Orders</Link>
                   </div>
