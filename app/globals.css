@@ -177,25 +177,26 @@ nav {
   }
 
   .product-menu {
-    font-size: 20px;
+    font-size: 15px;
   }
 
   .user-options {
     font-size: 20px;
     margin-top: 10px;
-  }
-
-}
-
-@media (max-width: 570px) {
-  .user-options {
     display: flex;
     align-items: center;
+  }
+}
+
+@media (max-width: 310px) {
+
+  .product-menu,
+  .user-options {
     font-size: 10px;
   }
 
-  .product-menu {
-    font-size: 10px;
+  .shop input {
+    width: 150px;
   }
 }
 
