@@ -88,7 +88,12 @@ export default function AdminProducts() {
           {...register("productPrice", { required: true })}
         />
         <label htmlFor="product-category">Product category</label>
-        <select name="product-category" id="product-category" {...register("productCategory", { required: true })}>
+        <select
+          name="product-category"
+          id="product-category"
+          {...register("productCategory", { required: true })}
+          style={{ padding: "0.5rem", border: "1px solid black", borderRadius: "5px" }}
+        >
           {categories.map((category) => (
             <option key={category.id} value={category.name}>{category.name}</option>
           ))}
