@@ -85,6 +85,8 @@ export default function Nav() {
           <form onSubmit={(e) => handleSearch(e)}>
             <input
               type="text"
+              name="search"
+              id="search"
               placeholder="Search for a product"
               onChange={(e) => setSearchProduct(e.target.value)}
             />
