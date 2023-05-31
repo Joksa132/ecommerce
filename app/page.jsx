@@ -34,31 +34,31 @@ export default function Home() {
   const images = [
     {
       url: 'https://images.pexels.com/photos/7679456/pexels-photo-7679456.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-      pageUrl: '/laptops',
+      pageUrl: '/Laptops',
       alt: 'laptop image',
       name: 'Laptops',
     },
     {
       url: 'https://images.pexels.com/photos/7679474/pexels-photo-7679474.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-      pageUrl: '/phones',
+      pageUrl: '/Phones',
       alt: 'phone image',
       name: 'Phones',
     },
     {
       url: 'https://images.pexels.com/photos/1251844/pexels-photo-1251844.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-      pageUrl: '/tablets',
+      pageUrl: '/Tablets',
       alt: 'tablet image',
       name: 'Tablets',
     },
     {
       url: 'https://images.pexels.com/photos/777001/pexels-photo-777001.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-      pageUrl: '/computers',
+      pageUrl: '/Computers',
       alt: 'computer image',
       name: 'Computers',
     },
     {
       url: 'https://images.pexels.com/photos/442576/pexels-photo-442576.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-      pageUrl: '/gaming',
+      pageUrl: '/Gaming',
       alt: 'gaming image',
       name: 'Gaming',
     },
