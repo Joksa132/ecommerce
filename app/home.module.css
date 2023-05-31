@@ -1,6 +1,7 @@
 .home-container {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
   height: 100vh;
 }
 
@@ -38,4 +39,12 @@
 
 .image-link:hover {
   background-color: #0056b3;
+}
+
+.card-container {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 50px;
+  margin-top: 20px;
+  margin-bottom: 10px;
 }
