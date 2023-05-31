@@ -13,27 +13,32 @@ export default function Home() {
     {
       url: 'https://images.pexels.com/photos/7679456/pexels-photo-7679456.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
       pageUrl: '/laptops',
-      alt: 'laptop image'
+      alt: 'laptop image',
+      name: 'Laptops',
     },
     {
       url: 'https://images.pexels.com/photos/7679474/pexels-photo-7679474.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
       pageUrl: '/phones',
-      alt: 'phone image'
+      alt: 'phone image',
+      name: 'Phones',
     },
     {
       url: 'https://images.pexels.com/photos/1251844/pexels-photo-1251844.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
       pageUrl: '/tablets',
-      alt: 'tablet image'
+      alt: 'tablet image',
+      name: 'Tablets',
     },
     {
       url: 'https://images.pexels.com/photos/777001/pexels-photo-777001.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
       pageUrl: '/computers',
-      alt: 'computer image'
+      alt: 'computer image',
+      name: 'Computers',
     },
     {
       url: 'https://images.pexels.com/photos/442576/pexels-photo-442576.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
       pageUrl: '/gaming',
-      alt: 'gaming image'
+      alt: 'gaming image',
+      name: 'Gaming',
     },
   ]
 
@@ -54,10 +59,12 @@ export default function Home() {
       >
         {images.map((image) => (
           <div key={image.alt}>
-            <img src={image.url} alt={image.alt} className='carousel-image' />
-            <Link href={image.pageUrl}>
-              <button className={styles['image-link']}></button>
-            </Link>
+            <div className={styles['image-container']}>
+              <img src={image.url} alt={image.alt} className={styles['carousel-image']} />
+              <Link href={image.pageUrl}>
+                <button className={styles['image-link']}>Check {image.name}!</button>
+              </Link>
+            </div>
           </div>
         ))}
       </Carousel>
