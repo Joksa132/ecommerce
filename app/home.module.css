@@ -7,3 +7,35 @@
 .carousel-container {
   max-width: 100%;
 }
+
+.carousel-image {
+  max-height: 500px;
+  max-width: 100%;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+.image-container {
+  position: relative;
+}
+
+.image-link {
+  height: 40px;
+  width: 120px;
+  background-color: #0064E4;
+  cursor: pointer;
+  position: absolute;
+  top: 80%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 10px;
+  color: white;
+  font-size: 14px;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.image-link:hover {
+  background-color: #0056b3;
+}
