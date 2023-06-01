@@ -70,7 +70,7 @@ export default function CategoryProducts({ params }) {
           <div className="card" key={product.id}>
             <span>{product.title}</span>
             {product.picture &&
-              <img src="" alt="" />
+              <img src={product.picture} alt="Product Picture" />
             }
             <p>{product.description}</p>
             <span>{product.price} RSD</span>
