@@ -35,12 +35,16 @@ export default function AdminProducts() {
 
   const onSubmit = async (data) => {
     try {
+      const formData = new FormData()
+      formData.append("productName", data.productName)
+      formData.append("productDesc", data.productDesc);
+      formData.append("productPrice", data.productPrice);
+      formData.append("productCategory", data.productCategory);
+      formData.append("productImage", data.productImage[0]);
+
       const res = await fetch('http://localhost:3000/api/products/new', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(data)
+        body: formData
       })
       const response = await res.json();
 
