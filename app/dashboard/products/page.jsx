@@ -102,7 +102,7 @@ export default function AdminProducts() {
             <option key={category.id} value={category.name}>{category.name}</option>
           ))}
         </select>
-        <input type="file" accept="image/*" {...register("productImage")} />
+        <input type="file" name="productImage" accept="image/*" {...register("productImage")} />
         <button type="submit" className="submit-button">Submit</button>
         {error ?
           <span style={{ color: 'red', fontWeight: "600" }}>{error}</span>
