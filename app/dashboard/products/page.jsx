@@ -11,6 +11,7 @@ export default function AdminProducts() {
   const { register, handleSubmit, formState: { errors } } = useForm();
   const [error, setError] = useState(null)
   const [success, setSuccess] = useState(null)
+  const [imageUrl, setImageUrl] = useState('')
 
   if (user?.role !== "ADMIN") throw new Error("ERROR TEST")
 
@@ -35,12 +36,25 @@ export default function AdminProducts() {
 
   const onSubmit = async (data) => {
     try {
+      if (data.productImage[0]) {
+        const imageFormData = new FormData()
+        imageFormData.append('file', data.productImage[0]);
+        imageFormData.append('upload_preset', process.env.NEXT_PUBLIC_UPLOAD_PRESET);
+
+        const imageUpload = await fetch(`https://api.cloudinary.com/v1_1/${process.env.NEXT_PUBLIC_CLOUD_NAME}/upload`, {
+          method: 'POST',
+          body: imageFormData,
+        })
+        const imageResponse = await imageUpload.json()
+        setImageUrl(imageResponse.url)
+      }
+
       const formData = new FormData()
       formData.append("productName", data.productName)
       formData.append("productDesc", data.productDesc);
       formData.append("productPrice", data.productPrice);
       formData.append("productCategory", data.productCategory);
-      formData.append("productImage", data.productImage[0]);
+      formData.append("productImage", imageUrl);
 
       const res = await fetch('http://localhost:3000/api/products/new', {
         method: 'POST',
