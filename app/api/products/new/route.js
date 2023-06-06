@@ -2,9 +2,12 @@ import { NextResponse } from 'next/server';
 import prisma from '../../../../prisma/prisma'
 
 export async function POST(request) {
-  const data = await request.json()
-
-  const { productName, productDesc, productPrice, productCategory, productImage } = data
+  const formData = await request.formData();
+  const productName = formData.get('productName');
+  const productDesc = formData.get('productDesc');
+  const productPrice = formData.get('productPrice');
+  const productCategory = formData.get('productCategory');
+  const productImage = formData.get('productImage')
 
   const productExists = await prisma.product.findUnique({
     where: {
@@ -31,7 +34,7 @@ export async function POST(request) {
       title: productName,
       description: productDesc,
       price: productPrice,
-      //picture: productImage,
+      picture: productImage,
       categories: {
         connect: {
           id: category.id
@@ -40,8 +43,5 @@ export async function POST(request) {
     }
   })
 
-  console.log("Product created")
-
   return NextResponse.json({ success: true, product });
-
 }
