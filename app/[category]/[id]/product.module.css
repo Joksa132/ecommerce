@@ -22,7 +22,8 @@
   flex-direction: column;
 }
 
-.cart-button {
+.cart-button,
+.login-button {
   gap: 20px;
   margin-top: 20px;
   padding: 5px;
