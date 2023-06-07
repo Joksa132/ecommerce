@@ -9,7 +9,12 @@
 .product-image {
   height: 500px;
   width: 500px;
-  border: 1px solid red;
+}
+
+.product-image img {
+  height: 500px;
+  width: 500px;
+  object-fit: cover;
 }
 
 .product-info {
