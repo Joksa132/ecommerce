@@ -11,6 +11,7 @@ export default function AdminProducts() {
   const { register, handleSubmit, formState: { errors } } = useForm();
   const [error, setError] = useState(null)
   const [success, setSuccess] = useState(null)
+  const [showAdditionalInfo, setShowAdditionalInfo] = useState(false)
 
   if (user?.role !== "ADMIN") throw new Error("ERROR TEST")
 
@@ -59,6 +60,18 @@ export default function AdminProducts() {
         formData.append('productImage', imageUrl);
       }
 
+      const productInfo = {
+        ram: data.productRam,
+        storage: data.productStorage,
+        processor: data.productProcessor,
+        battery: data.productBattery,
+        camera: data.productCamera,
+        os: data.productOs,
+        display: data.productDisplay,
+      }
+
+      formData.append("productInfo", JSON.stringify(productInfo))
+
       const res = await fetch('http://localhost:3000/api/products/new', {
         method: 'POST',
         body: formData
@@ -77,49 +90,137 @@ export default function AdminProducts() {
     }
   }
 
+  const handleAdditionalInfo = () => {
+    setShowAdditionalInfo(!showAdditionalInfo)
+  }
+
   return (
     <div className='outer-container'>
       <form className='form-container' style={{ gap: "10px" }} onSubmit={handleSubmit(onSubmit)}>
         <h2>Add a new product</h2>
-        <label htmlFor='product-name'>Product name</label>
-        <input
-          type="text"
-          name="product-name"
-          id="product-name"
-          required
-          className={styles["form-input"]}
-          {...register("productName", { required: true })}
-        />
-        <label htmlFor='description'>Product description</label>
-        <input
-          type="text"
-          name="description"
-          id="description"
-          required
-          className={styles["form-input"]}
-          {...register("productDesc", { required: true })}
-        />
-        <label htmlFor='price'>Product price</label>
-        <input
-          type="number"
-          name="price"
-          id="price"
-          required
-          className={styles["form-input"]}
-          {...register("productPrice", { required: true })}
-        />
-        <label htmlFor="product-category">Product category</label>
-        <select
-          name="product-category"
-          id="product-category"
-          {...register("productCategory", { required: true })}
-          style={{ padding: "0.5rem", border: "1px solid black", borderRadius: "5px" }}
-        >
-          {categories.map((category) => (
-            <option key={category.id} value={category.name}>{category.name}</option>
-          ))}
-        </select>
-        <input type="file" name="productImage" accept="image/*" {...register("productImage")} />
+        <div className="main-info">
+          <label htmlFor='product-name'>Product name</label>
+          <input
+            type="text"
+            name="product-name"
+            id="product-name"
+            required
+            className={styles["form-input"]}
+            {...register("productName", { required: true })}
+          />
+          <label htmlFor='description'>Product description</label>
+          <input
+            type="text"
+            name="description"
+            id="description"
+            required
+            className={styles["form-input"]}
+            {...register("productDesc", { required: true })}
+          />
+          <label htmlFor='price'>Product price</label>
+          <input
+            type="number"
+            name="price"
+            id="price"
+            required
+            className={styles["form-input"]}
+            {...register("productPrice", { required: true })}
+          />
+          <label htmlFor="product-category">Product category</label>
+          <select
+            name="product-category"
+            id="product-category"
+            {...register("productCategory", { required: true })}
+            style={{ padding: "0.5rem", border: "1px solid black", borderRadius: "5px" }}
+          >
+            {categories.map((category) => (
+              <option key={category.id} value={category.name}>{category.name}</option>
+            ))}
+          </select>
+          <input type="file" name="productImage" accept="image/*" {...register("productImage")} />
+        </div>
+        <button type='button' className='additional-info-button' onClick={handleAdditionalInfo}>Additional Info</button>
+        {showAdditionalInfo &&
+          <div className="additional-info">
+            <div className="input-group">
+              <label htmlFor='product-ram'>RAM memory</label>
+              <input
+                type="number"
+                name="product-ram"
+                id="product-ram"
+                required
+                className={styles["form-input"]}
+                {...register("productRam", { required: true })}
+              />
+            </div>
+            <div className="input-group">
+              <label htmlFor='product-storage'>Storage memory</label>
+              <input
+                type="text"
+                name="product-storage"
+                id="product-storage"
+                required
+                className={styles["form-input"]}
+                {...register("productStorage", { required: true })}
+              />
+            </div>
+            <div className="input-group">
+              <label htmlFor='product-cpu'>Processor</label>
+              <input
+                type="text"
+                name="product-cpu"
+                id="product-cpu"
+                required
+                className={styles["form-input"]}
+                {...register("productProcessor", { required: true })}
+              />
+            </div>
+            <div className="input-group">
+              <label htmlFor='product-battery'>Battery</label>
+              <input
+                type="number"
+                name="product-battery"
+                id="product-battery"
+                required
+                className={styles["form-input"]}
+                {...register("productBattery", { required: true })}
+              />
+            </div>
+            <div className="input-group">
+              <label htmlFor='product-camera'>Camera</label>
+              <input
+                type="text"
+                name="product-camera"
+                id="product-camera"
+                required
+                className={styles["form-input"]}
+                {...register("productCamera", { required: true })}
+              />
+            </div>
+            <div className="input-group">
+              <label htmlFor='product-os'>Operating system</label>
+              <input
+                type="text"
+                name="product-os"
+                id="product-os"
+                required
+                className={styles["form-input"]}
+                {...register("productOs", { required: true })}
+              />
+            </div>
+            <div className="input-group">
+              <label htmlFor='product-display'>Display</label>
+              <input
+                type="text"
+                name="product-display"
+                id="product-display"
+                required
+                className={styles["form-input"]}
+                {...register("productDisplay", { required: true })}
+              />
+            </div>
+          </div>}
+
         <button type="submit" className="submit-button">Submit</button>
         {error ?
           <span style={{ color: 'red', fontWeight: "600" }}>{error}</span>
