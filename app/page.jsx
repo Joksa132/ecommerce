@@ -58,12 +58,6 @@ export default function Home() {
       alt: 'computer image',
       name: 'Computers',
     },
-    {
-      url: 'https://images.pexels.com/photos/442576/pexels-photo-442576.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-      pageUrl: '/Gaming',
-      alt: 'gaming image',
-      name: 'Gaming',
-    },
   ]
 
   function handleChange(index) {

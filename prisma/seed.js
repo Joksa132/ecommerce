@@ -5,7 +5,6 @@ const categories = [
   { name: "Phones" },
   { name: "Tablets" },
   { name: "Computers" },
-  { name: "Gaming" },
 ];
 
 async function seed() {
