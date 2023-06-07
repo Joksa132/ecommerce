@@ -6,11 +6,13 @@ import Link from 'next/link';
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from "react-responsive-carousel";
 import { UserContext } from './context/userContext';
+import { CartContext } from './context/cartContext';
 
 export default function Home() {
   const [currentIndex, setCurrentIndex] = useState();
   const [randomProducts, setRandomProducts] = useState([])
   const { user } = useContext(UserContext)
+  const { cartProducts } = useContext(CartContext)
 
   useEffect(() => {
     async function fetchRandomProducts() {
@@ -111,7 +113,7 @@ export default function Home() {
                   </div>
                   :
                   <div className="card-actions">
-                    <Link href={`/${category}/${product.id}`}>
+                    <Link href={`/${product.categories[0].name}/${product.id}`}>
                       <button>View Details</button>
                     </Link>
                     {
