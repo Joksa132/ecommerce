@@ -13,8 +13,6 @@ export default function AdminProducts() {
   const [success, setSuccess] = useState(null)
   const [showAdditionalInfo, setShowAdditionalInfo] = useState(false)
 
-  if (user?.role !== "ADMIN") throw new Error("ERROR TEST")
-
   useEffect(() => {
     async function fetchCategories() {
       try {
