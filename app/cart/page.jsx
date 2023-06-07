@@ -71,7 +71,7 @@ export default function Cart() {
               <div className="card" key={product.id}>
                 <span>{product.title}</span>
                 {product.picture &&
-                  <img src="" alt="" />
+                  <img src={product.picture} alt={product.title} />
                 }
                 <p>{product.description}</p>
                 <span>{product.price} RSD</span>
