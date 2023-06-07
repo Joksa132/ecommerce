@@ -43,8 +43,10 @@
 
 .card-container {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
   gap: 50px;
+  max-width: 1200px;
   margin-top: 20px;
   margin-bottom: 10px;
+  text-align: center;
 }
