@@ -3,11 +3,14 @@
 import { useContext, useEffect, useState } from "react"
 import styles from './product.module.css'
 import { CartContext } from "@/app/context/cartContext"
+import { UserContext } from "@/app/context/userContext"
+import Link from "next/link"
 
 export default function ProductDetails({ params }) {
   const { id } = params
   const [product, setProduct] = useState({})
   const { cartProducts, addToCart, removeFromCart } = useContext(CartContext)
+  const { user } = useContext(UserContext)
 
   useEffect(() => {
     async function fetchProduct() {
@@ -50,9 +53,15 @@ export default function ProductDetails({ params }) {
         }
         <span>Price: {product.price} RSD</span>
         {
-          cartProducts.some((item) => item.id === product.id) ?
-            <button onClick={() => removeFromCart(product.id)} className={styles["cart-button"]}>Remove from Cart</button>
-            : <button onClick={() => addToCart(product)} className={styles["cart-button"]}>Add to Cart</button>
+          user ? <>
+            {
+              cartProducts.some((item) => item.id === product.id) ?
+                <button onClick={() => removeFromCart(product.id)} className={styles["cart-button"]}>Remove from Cart</button>
+                : <button onClick={() => addToCart(product)} className={styles["cart-button"]}>Add to Cart</button>}
+          </>
+            : <Link href={'/user/login'}>
+              <button className={styles["login-button"]}>Login to Order</button>
+            </Link>
         }
       </div>
     </div>
