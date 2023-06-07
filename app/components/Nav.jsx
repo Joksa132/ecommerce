@@ -12,7 +12,7 @@ import { useRouter } from "next/navigation";
 export default function Nav() {
   const { user, setUser } = useContext(UserContext)
   const { cartProducts } = useContext(CartContext)
-  const [categories, setCategories] = useState('')
+  const [categories, setCategories] = useState([])
   const [productDropdown, setProductDropdown] = useState(false)
   const [userDropdown, setUserDropdown] = useState(false)
   const [searchProduct, setSearchProduct] = useState('')
@@ -70,7 +70,7 @@ export default function Nav() {
             </div>
             {productDropdown &&
               <div className="products-dropdown">
-                {categories.map((category) => (
+                {categories?.map((category) => (
                   <Link
                     href={`/${category.name}`}
                     key={category.id}
