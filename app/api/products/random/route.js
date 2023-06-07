@@ -4,16 +4,12 @@ import prisma from '../../../../prisma/prisma'
 export async function GET(request) {
 
   const products = await prisma.product.findMany({
-    take: 5,
     include: {
       categories: true,
     },
   });
 
-  const randomProducts = shuffleArray(products);
-
-  console.log(products)
-  console.log(randomProducts)
+  const randomProducts = shuffleArray(products).slice(0, 5);
 
   return NextResponse.json({ success: true, randomProducts })
 }
