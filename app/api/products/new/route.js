@@ -8,6 +8,9 @@ export async function POST(request) {
   const productPrice = formData.get('productPrice');
   const productCategory = formData.get('productCategory');
   const productImage = formData.get('productImage')
+  const productInfo = formData.get('productInfo')
+
+  console.log(productInfo)
 
   const productExists = await prisma.product.findUnique({
     where: {
@@ -35,6 +38,7 @@ export async function POST(request) {
       description: productDesc,
       price: productPrice,
       picture: productImage,
+      info: JSON.parse(productInfo),
       categories: {
         connect: {
           id: category.id
