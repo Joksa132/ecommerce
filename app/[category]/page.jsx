@@ -93,9 +93,15 @@ export default function CategoryProducts({ params }) {
                       : <button onClick={() => addToCart(product)}>Add to Cart</button>
                   }
                 </div> :
-              <Link href={'/user/login'}>
-                <button>Login for Actions</button>
-              </Link>
+              <div className="card-actions">
+                <Link href={`/${category}/${product.id}`}>
+                  <button>View Details</button>
+                </Link>
+                <Link href={'/user/login'}>
+                  <button>Login to Order</button>
+                </Link>
+              </div>
+
             }
           </div>
         ))}
