@@ -33,3 +33,9 @@
   border-radius: 10px;
   border: none;
 }
+
+.product-additional-info {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
