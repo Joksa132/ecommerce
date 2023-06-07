@@ -3,15 +3,28 @@ import prisma from '../../../../prisma/prisma'
 
 export async function GET(request) {
 
-  const randomProducts = await prisma.product.findMany({
+  const products = await prisma.product.findMany({
     take: 5,
-    orderBy: {
-      id: "asc",
-    },
     include: {
       categories: true,
     },
   });
 
+  const randomProducts = shuffleArray(products);
+
+  console.log(products)
+  console.log(randomProducts)
+
   return NextResponse.json({ success: true, randomProducts })
+}
+
+function shuffleArray(array) {
+  const shuffledArray = [...array];
+
+  for (let i = shuffledArray.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [shuffledArray[i], shuffledArray[j]] = [shuffledArray[j], shuffledArray[i]];
+  }
+
+  return shuffledArray;
 }
