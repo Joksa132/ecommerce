@@ -32,7 +32,7 @@ export default function ProductDetails({ params }) {
   return (
     <div className={styles.container}>
       <div className={styles["product-image"]}>
-        <span>Image Placeholder</span>
+        <img src={product.picture} alt={product.title} />
       </div>
       <div className={styles["product-info"]}>
         <h2 style={{ marginBottom: "30px" }}>{product.title}</h2>
