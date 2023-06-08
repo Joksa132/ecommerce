@@ -18,7 +18,6 @@ export default function UserOrders() {
         })
         const data = await res.json();
         setTransactionInfo(data.transaction)
-        console.log(transactionInfo)
       }
       catch (error) {
         console.log(error)
