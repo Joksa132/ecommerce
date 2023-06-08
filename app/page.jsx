@@ -12,7 +12,7 @@ export default function Home() {
   const [currentIndex, setCurrentIndex] = useState();
   const [randomProducts, setRandomProducts] = useState([])
   const { user } = useContext(UserContext)
-  const { cartProducts } = useContext(CartContext)
+  const { cartProducts, addToCart, removeFromCart } = useContext(CartContext)
 
   useEffect(() => {
     async function fetchRandomProducts() {
