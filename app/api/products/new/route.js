@@ -10,8 +10,6 @@ export async function POST(request) {
   const productImage = formData.get('productImage')
   const productInfo = formData.get('productInfo')
 
-  console.log(productInfo)
-
   const productExists = await prisma.product.findUnique({
     where: {
       title: productName
