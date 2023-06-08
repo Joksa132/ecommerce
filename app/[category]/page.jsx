@@ -68,7 +68,9 @@ export default function CategoryProducts({ params }) {
       <div className='card-container'>
         {products.map(product => (
           <div className="card" key={product.id}>
-            <span>{product.title}</span>
+            <Link href={`/${category}/${product.id}`}>
+              <span>{product.title}</span>
+            </Link>
             {product.picture &&
               <img src={product.picture} alt="Product Picture" />
             }
