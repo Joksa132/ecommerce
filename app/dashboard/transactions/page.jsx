@@ -93,14 +93,14 @@ export default function AdminOrders() {
               </td>
               <td>
                 {transaction.products.map((product) => (
-                  <div key={product.productId}>
+                  <div key={`title-${product.title}`}>
                     <strong>{product.title}</strong> (Quantity: {product.quantity})
                   </div>
                 ))}
               </td>
               <td>
                 {transaction.products.map((product) => (
-                  <div key={product.productId}>
+                  <div key={`price-${product.productId}-${product.price}`}>
                     {product.price} RSD
                   </div>
                 ))}
