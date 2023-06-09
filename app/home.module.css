@@ -45,12 +45,24 @@
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
   max-width: 1200px;
-  gap: 40px;
-  margin-top: 20px;
+  gap: 30px;
+  margin: 20px;
   padding-bottom: 20px;
   text-align: center;
   justify-items: center;
   box-sizing: border-box;
+}
+
+.card-container button {
+  padding: 6px;
+}
+
+@media (max-width: 1100px) {
+  .card-container {
+    gap: 10px;
+    grid-template-columns: repeat(4, 1fr);
+    margin: 10px;
+  }
 }
 
 @media (max-width: 1000px) {
