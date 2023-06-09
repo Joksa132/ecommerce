@@ -44,9 +44,30 @@
 .card-container {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-  gap: 50px;
   max-width: 1200px;
+  gap: 40px;
   margin-top: 20px;
-  margin-bottom: 10px;
+  padding-bottom: 20px;
   text-align: center;
+  justify-items: center;
+  box-sizing: border-box;
+}
+
+@media (max-width: 1000px) {
+  .card-container {
+    gap: 10px;
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 750px) {
+  .card-container {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 500px) {
+  .card-container {
+    grid-template-columns: 1fr;
+  }
 }
