@@ -91,7 +91,7 @@ export default function Home() {
         {randomProducts && randomProducts.length > 0 ? (
           randomProducts.map(product => (
             <div className="card" key={product.id}>
-              <span>{product.title}</span>
+              <span className={styles['card-title']}>{product.title}</span>
               {product.picture &&
                 <img src={product.picture} alt="Product Picture" />
               }
