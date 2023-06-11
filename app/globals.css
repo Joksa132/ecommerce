@@ -4,9 +4,19 @@
   margin: 0;
 }
 
+:root {
+  --form-bg-color: #044c94;
+  --nav-bg-color: #002242;
+  --main-button-color: #0064E4;
+  --background-color: #032944;
+  --form-input-color: #5096f2;
+}
+
 html,
 body {
   max-width: 100vw;
+  background-color: var(--background-color);
+  color: white;
 }
 
 a {
@@ -15,7 +25,7 @@ a {
 }
 
 nav {
-  background-color: #002242;
+  background-color: var(--nav-bg-color);
   padding: 5px;
   color: white;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
@@ -74,7 +84,7 @@ nav {
 
 .products-dropdown {
   position: absolute;
-  background-color: #002242;
+  background-color: var(--nav-bg-color);
   margin-top: 47px;
   padding: 10px 0;
   z-index: 1;
@@ -91,7 +101,7 @@ nav {
 
 .user-dropdown {
   position: absolute;
-  background-color: #002242;
+  background-color: var(--nav-bg-color);
   top: 100%;
   left: 0;
   padding: 10px 0;
@@ -218,6 +228,7 @@ nav {
   padding: 30px;
   border-radius: 10px;
   border: 2px solid #002242;
+  background-color: var(--form-bg-color);
 }
 
 .form-container-header {
@@ -239,7 +250,14 @@ nav {
   height: 30px;
   border-radius: 5px;
   padding: 5px 10px;
-  border: 1px solid gray;
+  border: 1px solid var(--form-bg-color);
+  background-color: var(--form-input-color);
+  color: white;
+}
+
+.form-container input:focus {
+  outline: none;
+  border-color: #8ec2ff;
 }
 
 .link-msg {
@@ -247,13 +265,13 @@ nav {
 }
 
 .link-click {
-  color: blue;
+  color: rgb(143, 143, 255);
   font-weight: 500;
 }
 
 .submit-button,
 .additional-info-button {
-  background-color: #0064E4;
+  background-color: var(--main-button-color);
   color: white;
   font-size: 1.2rem;
   font-weight: 500;
@@ -261,6 +279,7 @@ nav {
   margin-top: 10px;
   height: 30px;
   cursor: pointer;
+  border: none;
 }
 
 .main-info {
@@ -328,7 +347,8 @@ nav {
 .card {
   width: 100%;
   height: 100%;
-  border: 2px solid #ccc;
+  border: 1px solid #326efa;
+  background-color: var(--form-bg-color);
   border-radius: 15px;
   display: flex;
   flex-direction: column;
@@ -361,7 +381,7 @@ nav {
 .total-price button {
   padding: 10px 20px;
   font-size: 1rem;
-  background-color: #3498db;
+  background-color: var(--main-button-color);
   color: white;
   cursor: pointer;
   border-radius: 15px;
