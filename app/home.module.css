@@ -24,7 +24,7 @@
 .image-link {
   height: 40px;
   width: 120px;
-  background-color: #0064E4;
+  background-color: var(--main-button-color);
   cursor: pointer;
   position: absolute;
   top: 80%;
