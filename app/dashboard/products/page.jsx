@@ -120,6 +120,7 @@ export default function AdminProducts() {
             type="number"
             name="price"
             id="price"
+            min="1"
             required
             className={styles["form-input"]}
             {...register("productPrice", { required: true })}
@@ -129,6 +130,7 @@ export default function AdminProducts() {
             name="product-category"
             id="product-category"
             {...register("productCategory", { required: true })}
+            className={styles["form-select"]}
             style={{ padding: "0.5rem", border: "1px solid black", borderRadius: "5px" }}
           >
             {categories.map((category) => (
@@ -146,6 +148,7 @@ export default function AdminProducts() {
                 type="number"
                 name="product-ram"
                 id="product-ram"
+                min="1"
                 required
                 className={styles["form-input"]}
                 {...register("productRam", { required: true })}
@@ -179,6 +182,7 @@ export default function AdminProducts() {
                 type="number"
                 name="product-battery"
                 id="product-battery"
+                min="1"
                 required
                 className={styles["form-input"]}
                 {...register("productBattery", { required: true })}
