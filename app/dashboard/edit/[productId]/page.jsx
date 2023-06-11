@@ -126,6 +126,7 @@ export default function EditProduct({ params }) {
             type="number"
             name="price"
             id="price"
+            min="1"
             required
             className={styles["form-input"]}
             {...register("productPrice", { required: true })}
@@ -137,6 +138,7 @@ export default function EditProduct({ params }) {
             name="product-category"
             id="product-category"
             {...register("productCategory", { required: true })}
+            className={styles["form-select"]}
             onChange={(e) => setProduct({ ...product, category: e.target.value })}
           >
             {categories.map((category) => (
@@ -152,6 +154,7 @@ export default function EditProduct({ params }) {
               type="number"
               name="product-ram"
               id="product-ram"
+              min="1"
               required
               className={styles["form-input"]}
               {...register("productRam", { required: true })}
@@ -191,6 +194,7 @@ export default function EditProduct({ params }) {
               type="number"
               name="product-battery"
               id="product-battery"
+              min="1"
               required
               className={styles["form-input"]}
               {...register("productBattery", { required: true })}
