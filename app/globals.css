@@ -400,6 +400,17 @@ nav {
   border: none;
 }
 
+.card input {
+  border: 1px solid var(--form-bg-color);
+  background-color: var(--form-input-color);
+  color: white;
+}
+
+.card input:focus {
+  outline: none;
+  border-color: var(--input-focus-color)
+}
+
 .empty-cart {
   display: flex;
   flex-direction: column;
