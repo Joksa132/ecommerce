@@ -10,6 +10,7 @@
   --main-button-color: #0064E4;
   --background-color: #032944;
   --form-input-color: #5096f2;
+  --input-focus-color: #8ec2ff;
 }
 
 html,
@@ -66,7 +67,18 @@ nav {
   height: 40px;
   border-radius: 20px;
   padding: 5px 10px;
-  border: 1px solid gray;
+  border: 1px solid var(--form-bg-color);
+  background-color: var(--form-input-color);
+  color: white;
+}
+
+.shop input::placeholder {
+  color: white;
+}
+
+.shop input:focus {
+  outline: none;
+  border-color: var(--input-focus-color);
 }
 
 .product-menu {
@@ -257,7 +269,7 @@ nav {
 
 .form-container input:focus {
   outline: none;
-  border-color: #8ec2ff;
+  border-color: var(--input-focus-color)
 }
 
 .link-msg {
