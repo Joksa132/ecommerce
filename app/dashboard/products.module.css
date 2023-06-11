@@ -2,5 +2,18 @@
   height: 30px;
   border-radius: 5px;
   padding: 5px 10px;
-  border: 1px solid gray;
+  border: 1px solid var(--form-bg-color);
+  background-color: var(--form-input-color);
+  color: white;
+}
+
+.form-select {
+  border: 1px solid var(--form-bg-color);
+  background-color: var(--form-input-color);
+  color: white;
+  border: none;
+}
+
+.form-select:hover option {
+  background-color: var(--form-bg-color);
 }
