@@ -8,7 +8,7 @@
   --form-bg-color: #044c94;
   --nav-bg-color: #002242;
   --main-button-color: #0064E4;
-  --background-color: #032944;
+  --background-color: #053456;
   --form-input-color: #5096f2;
   --input-focus-color: #8ec2ff;
 }
@@ -239,7 +239,7 @@ nav {
   padding: 30px;
   border-radius: 10px;
   border: 2px solid #002242;
-  background-color: var(--form-bg-color);
+  background-color: var(--nav-bg-color);
 }
 
 .form-container-header {
@@ -262,7 +262,7 @@ nav {
   border-radius: 5px;
   padding: 5px 10px;
   border: 1px solid var(--form-bg-color);
-  background-color: var(--form-input-color);
+  background-color: var(--form-bg-color);
   color: white;
 }
 
