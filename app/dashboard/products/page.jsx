@@ -1,12 +1,10 @@
 "use client"
 
-import { useContext, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import styles from '../products.module.css'
-import { UserContext } from '@/app/context/userContext'
 import { useForm } from 'react-hook-form';
 
 export default function AdminProducts() {
-  const { user } = useContext(UserContext)
   const [categories, setCategories] = useState([])
   const { register, handleSubmit, formState: { errors } } = useForm();
   const [error, setError] = useState(null)
