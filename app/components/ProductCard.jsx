@@ -52,7 +52,7 @@ export default function ProductCard({ product, handleDelete, handleQuantityChang
           </>)
       ) :
         <div className="card-actions">
-          <Link href={`/${category}/${product.id}`}>
+          <Link href={`/${product.categories[0].name}/${product.id}`}>
             <button>View Details</button>
           </Link>
           <Link href={'/user/login'}>
