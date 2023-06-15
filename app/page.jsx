@@ -1,18 +1,15 @@
 "use client"
 
-import { useContext, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import styles from './home.module.css';
 import Link from 'next/link';
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from "react-responsive-carousel";
-import { UserContext } from './context/userContext';
-import { CartContext } from './context/cartContext';
+import ProductCard from './components/ProductCard';
 
 export default function Home() {
   const [currentIndex, setCurrentIndex] = useState();
   const [randomProducts, setRandomProducts] = useState([])
-  const { user } = useContext(UserContext)
-  const { cartProducts, addToCart, removeFromCart } = useContext(CartContext)
 
   useEffect(() => {
     async function fetchRandomProducts() {
@@ -64,6 +61,23 @@ export default function Home() {
     setCurrentIndex(index);
   }
 
+  const handleDelete = async (id) => {
+    try {
+      const res = await fetch(`http://localhost:3000/api/products/delete/${id}`, {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      })
+      const data = await res.json()
+
+      setRandomProducts(randomProducts.filter(product => product.id !== id))
+    }
+    catch (error) {
+      console.log(error)
+    }
+  }
+
   return (
     <main className={styles["home-container"]}>
       <Carousel
@@ -90,37 +104,7 @@ export default function Home() {
       <div className={styles['card-container']}>
         {randomProducts && randomProducts.length > 0 ? (
           randomProducts.map(product => (
-            <div className="card" key={product.id}>
-              <span className={styles['card-title']}>{product.title}</span>
-              {product.picture &&
-                <img src={product.picture} alt="Product Picture" />
-              }
-              <p>{product.description}</p>
-              <span>{product.price} RSD</span>
-              {user ?
-                user.role === "ADMIN" ?
-                  <div className="card-actions">
-                    <Link href={`/dashboard/edit/${product.id}`}>
-                      <button>Edit</button>
-                    </Link>
-                    <button onClick={() => handleDelete(product.id)}>Delete</button>
-                  </div>
-                  :
-                  <div className="card-actions">
-                    <Link href={`/${product.categories[0].name}/${product.id}`}>
-                      <button>View Details</button>
-                    </Link>
-                    {
-                      cartProducts.some((item) => item.id === product.id) ?
-                        <button onClick={() => removeFromCart(product.id)}>Remove from Cart</button>
-                        : <button onClick={() => addToCart(product)}>Add to Cart</button>
-                    }
-                  </div> :
-                <Link href={'/user/login'}>
-                  <button>Login for Actions</button>
-                </Link>
-              }
-            </div>
+            <ProductCard product={product} key={product.id} isCart={false} handleDelete={handleDelete} />
           ))
         ) : <></>}
       </div>
