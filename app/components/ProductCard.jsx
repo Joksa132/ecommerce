@@ -3,7 +3,7 @@ import { useContext } from "react";
 import { UserContext } from "../context/userContext";
 import { CartContext } from "../context/cartContext";
 
-export default function ProductCard({ product, handleDelete, handleQuantityChange, productQuantities, isCart, category }) {
+export default function ProductCard({ product, handleDelete, handleQuantityChange, productQuantities, isCart }) {
   const { user } = useContext(UserContext)
   const { cartProducts, addToCart, removeFromCart } = useContext(CartContext)
 
