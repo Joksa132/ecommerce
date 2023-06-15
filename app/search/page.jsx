@@ -5,6 +5,7 @@ import { useContext, useEffect, useState } from 'react';
 import { UserContext } from '../context/userContext';
 import Link from "next/link";
 import { CartContext } from '../context/cartContext';
+import ProductCard from '../components/ProductCard';
 
 export default function SearchResults() {
   const searchParams = useSearchParams();
@@ -58,37 +59,7 @@ export default function SearchResults() {
       {products.length ?
         <div className='card-container'>
           {products.map(product => (
-            <div className="card" key={product.id}>
-              <span>{product.title}</span>
-              {product.picture &&
-                <img src={product.picture} alt={product.title} />
-              }
-              <p>{product.description}</p>
-              <span>{product.price} RSD</span>
-              {user ?
-                user.role === "ADMIN" ?
-                  <div className="card-actions">
-                    <Link href={`/dashboard/edit/${product.id}`}>
-                      <button>Edit</button>
-                    </Link>
-                    <button onClick={() => handleDelete(product.id)}>Delete</button>
-                  </div>
-                  :
-                  <div className="card-actions">
-                    <Link href={`${product.categories[0].name}/${product.id}`}>
-                      <button>View Details</button>
-                    </Link>
-                    {
-                      cartProducts.some((item) => item.id === product.id) ?
-                        <button onClick={() => removeFromCart(product.id)}>Remove from Cart</button>
-                        : <button onClick={() => addToCart(product)}>Add to Cart</button>
-                    }
-                  </div> :
-                <Link href={'/user/login'}>
-                  <button>Login for Actions</button>
-                </Link>
-              }
-            </div>
+            < ProductCard product={product} key={product.id} isCart={false} handleDelete={handleDelete} />
           ))}
         </div> :
         <div style={{ fontSize: "2rem", marginTop: "30px" }}>
