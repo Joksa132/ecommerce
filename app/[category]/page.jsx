@@ -1,18 +1,14 @@
 "use client"
 
-import { useContext, useEffect, useState } from "react"
+import { useEffect, useState } from "react"
 import styles from './category.module.css'
-import { UserContext } from "../context/userContext"
 import Icon from '@mdi/react';
 import { mdiClose } from '@mdi/js';
-import Link from "next/link";
-import { CartContext } from "../context/cartContext";
+import ProductCard from "../components/ProductCard";
 
 export default function CategoryProducts({ params }) {
   const { category } = params
   const [products, setProducts] = useState([])
-  const { user } = useContext(UserContext)
-  const { cartProducts, addToCart, removeFromCart } = useContext(CartContext)
   const [message, setMessage] = useState(null)
 
   useEffect(() => {
@@ -51,7 +47,7 @@ export default function CategoryProducts({ params }) {
       console.log(error)
     }
   }
-
+  console.log(products)
   return (
     <div className="card-outer-container">
       <h1 style={{ marginTop: "20px" }}>{category}</h1>
@@ -67,7 +63,15 @@ export default function CategoryProducts({ params }) {
         </div> : <></>}
       <div className='card-container'>
         {products.map(product => (
-          <div className="card" key={product.id}>
+          <ProductCard product={product} key={product.id} isCart={false} handleDelete={handleDelete} />
+        ))}
+      </div>
+    </div>
+  )
+}
+
+/*
+<div className="card" key={product.id}>
             <Link href={`/${category}/${product.id}`}>
               <span>{product.title}</span>
             </Link>
@@ -106,8 +110,4 @@ export default function CategoryProducts({ params }) {
 
             }
           </div>
-        ))}
-      </div>
-    </div>
-  )
-}
+          */
