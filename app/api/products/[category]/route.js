@@ -12,7 +12,10 @@ export async function GET(request) {
           name: category
         }
       }
-    }
+    },
+    include: {
+      categories: true,
+    },
   })
 
   return NextResponse.json({ products })
