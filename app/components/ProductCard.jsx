@@ -8,7 +8,7 @@ export default function ProductCard({ product, handleDelete, handleQuantityChang
   const { cartProducts, addToCart, removeFromCart } = useContext(CartContext)
 
   return (
-    <div className="card" key={product.id}>
+    <div className="card">
       <Link href={`/${product.categories[0].name}/${product.id}`}>
         <span>{product.title}</span>
       </Link>
