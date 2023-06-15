@@ -1,18 +1,13 @@
 "use client"
 
 import { useSearchParams } from 'next/navigation';
-import { useContext, useEffect, useState } from 'react';
-import { UserContext } from '../context/userContext';
-import Link from "next/link";
-import { CartContext } from '../context/cartContext';
+import { useEffect, useState } from 'react';
 import ProductCard from '../components/ProductCard';
 
 export default function SearchResults() {
   const searchParams = useSearchParams();
   const productQuery = searchParams.get('product');
   const [products, setProducts] = useState([])
-  const { user } = useContext(UserContext)
-  const { cartProducts, addToCart, removeFromCart } = useContext(CartContext)
 
   useEffect(() => {
     const fetchProducts = async () => {
