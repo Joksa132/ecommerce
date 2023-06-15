@@ -4,6 +4,7 @@ import { useContext, useState } from 'react';
 import { CartContext } from '../context/cartContext';
 import Link from 'next/link';
 import { UserContext } from '../context/userContext';
+import ProductCard from '../components/ProductCard';
 
 export default function Cart() {
   const { cartProducts, removeFromCart } = useContext(CartContext)
@@ -66,30 +67,15 @@ export default function Cart() {
             <span>Total Price: {calculateTotalPrice()} RSD</span>
             <button onClick={handleOrderClick}>Order</button>
           </div>
-          <div className="card-container">
+          <div className="card-container" style={{ marginBottom: "30px" }}>
             {cartProducts.map(product => (
-              <div className="card" key={product.id}>
-                <span>{product.title}</span>
-                {product.picture &&
-                  <img src={product.picture} alt={product.title} />
-                }
-                <p>{product.description}</p>
-                <span>{product.price} RSD</span>
-                <div className="product-quantity">
-                  <label htmlFor="quantity">Quantity:</label>
-                  <input
-                    type="number"
-                    value={productQuantities[product.id] || 1}
-                    onChange={(event) => handleQuantityChange(event, product.id)}
-                    min={1}
-                    id='quantity'
-                    style={{ marginBottom: "10px" }}
-                  />
-                </div>
-                <div className="card-actions">
-                  <button onClick={() => removeFromCart(product.id)}>Remove from Cart</button>
-                </div>
-              </div>
+              <ProductCard
+                product={product}
+                key={product.id}
+                isCart={true}
+                handleQuantityChange={handleQuantityChange}
+                productQuantities={productQuantities}
+              />
             ))
             }
           </div>
