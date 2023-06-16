@@ -27,19 +27,3 @@ export async function POST(request) {
     console.log(error)
   }
 }
-
-/*
-const transaction = await prisma.transaction.create({
-      data: {
-        userId,
-        products: {
-          create: products.map((product) => ({
-            productId: product.id,
-            title: product.title,
-            price: product.price,
-            quantity: product.quantity,
-          }))
-        }
-      }
-    })
-    */
