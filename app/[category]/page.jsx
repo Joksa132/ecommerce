@@ -47,10 +47,13 @@ export default function CategoryProducts({ params }) {
       console.log(error)
     }
   }
-  console.log(products)
+
   return (
     <div className="card-outer-container">
       <h1 style={{ marginTop: "20px" }}>{category}</h1>
+      <div className="filter-container">
+
+      </div>
       {message ?
         <div className={styles["message-container"]}>
           <span>{message.title} has been deleted!</span>
