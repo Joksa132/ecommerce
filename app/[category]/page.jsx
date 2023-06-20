@@ -83,7 +83,7 @@ export default function CategoryProducts({ params }) {
       <div className="filter-container">
         {infoFields.map(field => (
           <div key={field} className="filter-group">
-            <span>{field}:</span>
+            <span>{field.toUpperCase()}:</span>
             {availableInfoValues[field]?.map((value) => (
               <label key={value}>
                 <input
