@@ -344,6 +344,20 @@ nav {
   gap: 40px;
 }
 
+.filter-container {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  background-color: var(--form-bg-color);
+  padding: 10px;
+  border-radius: 15px;
+}
+
+.filter-group {
+  display: flex;
+  flex-direction: column;
+}
+
 .card-container {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
