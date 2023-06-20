@@ -9,20 +9,32 @@ import ProductCard from "../components/ProductCard";
 export default function CategoryProducts({ params }) {
   const { category } = params
   const [products, setProducts] = useState([])
+  const [allProducts, setAllProducts] = useState([])
   const [message, setMessage] = useState(null)
-  const [filters, setFilters] = useState({
-    ram: '',
-    storage: '',
-    display: '',
-    camera: '',
-    battery: '',
-    os: '',
-    processor: '',
-  })
+  const [filters, setFilters] = useState({})
 
   useEffect(() => {
     async function fetchProducts() {
       try {
+        const queryString = new URLSearchParams(filters).toString();
+
+        const res = await fetch(`http://localhost:3000/api/products/${category}?${queryString}`, {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        })
+
+        const data = await res.json();
+        setProducts(data.products)
+        setAllProducts(data.allProducts)
+      }
+      catch (error) {
+        console.log(error)
+      }
+    }
+    /*
+    try {
         const res = await fetch(`http://localhost:3000/api/products/${category}`, {
           method: 'GET',
           headers: {
@@ -32,13 +44,10 @@ export default function CategoryProducts({ params }) {
         const data = await res.json();
         setProducts(data.products)
       }
-      catch (error) {
-        console.log(error)
-      }
-    }
+      */
 
     fetchProducts()
-  }, [])
+  }, [filters])
 
   const handleDelete = async (id) => {
     try {
@@ -57,9 +66,9 @@ export default function CategoryProducts({ params }) {
     }
   }
 
-  const infoFields = ['processor', 'display', 'ram', 'os', 'battery', 'camera', 'storage',];
+  const infoFields = ['ram', 'storage', 'display', 'os', 'battery', 'camera', 'processor',];
   const availableInfoValues = infoFields.reduce((values, field) => {
-    const uniqueValues = Array.from(new Set(products.map(product => product.info?.[field]))).filter(Boolean);
+    const uniqueValues = Array.from(new Set(allProducts.map(product => product.info?.[field]))).filter(Boolean);
     return {
       ...values,
       [field]: uniqueValues
@@ -67,13 +76,18 @@ export default function CategoryProducts({ params }) {
   }, {});
 
   const handleFilterChange = (field, value) => {
-    setFilters((prevFilters) => ({
-      ...prevFilters,
-      [field]: value,
-    }));
-  };
+    setFilters((prevFilters) => {
+      const updatedFilters = { ...prevFilters };
 
-  console.log(filters)
+      if (value) {
+        updatedFilters[field] = value;
+      } else {
+        delete updatedFilters[field];
+      }
+
+      return updatedFilters;
+    });
+  };
 
   return (
     <div className="card-outer-container">
@@ -87,6 +101,7 @@ export default function CategoryProducts({ params }) {
                 <input
                   type="checkbox"
                   checked={filters[field] === value}
+                  id={value}
                   onChange={(e) =>
                     handleFilterChange(field, e.target.checked ? value : '')
                   }
