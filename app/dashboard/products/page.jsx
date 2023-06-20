@@ -115,7 +115,7 @@ export default function AdminProducts() {
           />
           <label htmlFor='price'>Product price</label>
           <input
-            type="number"
+            type="text"
             name="price"
             id="price"
             min="1"
@@ -143,7 +143,7 @@ export default function AdminProducts() {
             <div className="input-group">
               <label htmlFor='product-ram'>RAM memory</label>
               <input
-                type="number"
+                type="text"
                 name="product-ram"
                 id="product-ram"
                 min="1"
@@ -177,7 +177,7 @@ export default function AdminProducts() {
             <div className="input-group">
               <label htmlFor='product-battery'>Battery</label>
               <input
-                type="number"
+                type="text"
                 name="product-battery"
                 id="product-battery"
                 min="1"
