@@ -33,18 +33,6 @@ export default function CategoryProducts({ params }) {
         console.log(error)
       }
     }
-    /*
-    try {
-        const res = await fetch(`http://localhost:3000/api/products/${category}`, {
-          method: 'GET',
-          headers: {
-            'Content-Type': 'application/json'
-          }
-        })
-        const data = await res.json();
-        setProducts(data.products)
-      }
-      */
 
     fetchProducts()
   }, [filters])
