@@ -57,9 +57,10 @@ export default function CategoryProducts({ params }) {
   const infoFields = ['ram', 'storage', 'display', 'os', 'battery', 'camera', 'processor',];
   const availableInfoValues = infoFields.reduce((values, field) => {
     const uniqueValues = Array.from(new Set(allProducts.map(product => product.info?.[field]))).filter(Boolean);
+    const sortedValues = uniqueValues.sort((a, b) => a.localeCompare(b, undefined, { numeric: true }));
     return {
       ...values,
-      [field]: uniqueValues
+      [field]: sortedValues
     };
   }, {});
 
