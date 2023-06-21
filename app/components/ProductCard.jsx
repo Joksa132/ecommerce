@@ -2,6 +2,8 @@ import Link from "next/link";
 import { useContext } from "react";
 import { UserContext } from "../context/userContext";
 import { CartContext } from "../context/cartContext";
+import Icon from '@mdi/react';
+import { mdiCartMinus, mdiCartPlus } from "@mdi/js";
 
 export default function ProductCard({ product, handleDelete, handleQuantityChange, productQuantities, isCart }) {
   const { user } = useContext(UserContext)
@@ -44,8 +46,8 @@ export default function ProductCard({ product, handleDelete, handleQuantityChang
               </Link>
               {
                 cartProducts.some((item) => item.id === product.id) ?
-                  <button onClick={() => removeFromCart(product.id)}>Remove from Cart</button>
-                  : <button onClick={() => addToCart(product)}>Add to Cart</button>
+                  <Icon path={mdiCartMinus} size={1.5} onClick={() => removeFromCart(product.id)} style={{ cursor: "pointer" }} />
+                  : <Icon path={mdiCartPlus} size={1.5} onClick={() => addToCart(product)} style={{ cursor: "pointer" }} />
               }
             </div>
           </>)
