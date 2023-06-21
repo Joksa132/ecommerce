@@ -346,6 +346,7 @@ nav {
 .filter-container {
   display: flex;
   justify-content: center;
+  flex-wrap: wrap;
   gap: 20px;
   background-color: var(--form-bg-color);
   padding: 10px;
@@ -475,6 +476,19 @@ nav {
     grid-template-columns: repeat(2, 1fr);
     gap: 30px;
     padding: 0 10px;
+  }
+
+  .filter-container {
+    gap: 10px;
+    padding: 5px;
+    border-radius: 15px;
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .filter-container {
+    font-size: 0.7rem;
   }
 }
 
