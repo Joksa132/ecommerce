@@ -403,7 +403,7 @@ nav {
 .card button,
 .empty-cart button,
 .total-price button {
-  padding: 10px 20px;
+  padding: 10px;
   font-size: 1rem;
   background-color: var(--main-button-color);
   color: white;
