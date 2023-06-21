@@ -14,7 +14,7 @@
 .product-image img {
   height: 500px;
   width: 500px;
-  object-fit: cover;
+  object-fit: contain;
 }
 
 .product-info {
