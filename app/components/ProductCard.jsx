@@ -15,7 +15,6 @@ export default function ProductCard({ product, handleDelete, handleQuantityChang
       {product.picture &&
         <img src={product.picture} alt="Product Picture" />
       }
-      <p>{product.description}</p>
       <span>{product.price} RSD</span>
       {user ? (
         user.role === "ADMIN" ?
