@@ -8,7 +8,7 @@ export default function AdminOrders() {
   useEffect(() => {
     const fetchTransactions = async () => {
       try {
-        const res = await fetch('http://localhost:3000/api/transactions/get/all', {
+        const res = await fetch('/api/transactions/get/all', {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json'
@@ -32,7 +32,7 @@ export default function AdminOrders() {
     try {
       const transaction = transactions.find((transaction) => transaction.id === transactionId);
 
-      const res = await fetch(`http://localhost:3000/api/transactions/status/${transactionId}`, {
+      const res = await fetch(`/api/transactions/status/${transactionId}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",

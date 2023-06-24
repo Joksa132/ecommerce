@@ -14,7 +14,7 @@ export default function EditProduct({ params }) {
   useEffect(() => {
     async function fetchProduct() {
       try {
-        const res = await fetch(`http://localhost:3000/api/products/get/${productId}`, {
+        const res = await fetch(`/api/products/get/${productId}`, {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json'
@@ -37,7 +37,7 @@ export default function EditProduct({ params }) {
 
     async function fetchCategories() {
       try {
-        const res = await fetch('http://localhost:3000/api/categories', {
+        const res = await fetch('/api/categories', {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json'
@@ -79,7 +79,7 @@ export default function EditProduct({ params }) {
 
       formData.append("product", JSON.stringify(product))
 
-      const res = await fetch(`http://localhost:3000/api/products/edit/${productId}`, {
+      const res = await fetch(`/api/products/edit/${productId}`, {
         method: 'PUT',
         body: formData
       })

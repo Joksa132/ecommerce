@@ -1,6 +1,6 @@
 "use client"
 
-import { useContext, useEffect, useState } from 'react'
+import { useContext, useState } from 'react'
 import styles from './info.module.css'
 import { UserContext } from '@/app/context/userContext'
 import Cookies from "js-cookie";
@@ -14,7 +14,7 @@ export default function EditInfo() {
 
   const onSubmit = async (data) => {
     try {
-      const res = await fetch(`http://localhost:3000/api/user/edit/${user.userId}`, {
+      const res = await fetch(`/api/user/edit/${user.userId}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json'

@@ -14,7 +14,7 @@ export default function AdminProducts() {
   useEffect(() => {
     async function fetchCategories() {
       try {
-        const res = await fetch('http://localhost:3000/api/categories', {
+        const res = await fetch('/api/categories', {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json'
@@ -68,7 +68,7 @@ export default function AdminProducts() {
 
       formData.append("productInfo", JSON.stringify(productInfo))
 
-      const res = await fetch('http://localhost:3000/api/products/new', {
+      const res = await fetch('/api/products/new', {
         method: 'POST',
         body: formData
       })

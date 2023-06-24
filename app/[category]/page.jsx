@@ -19,7 +19,7 @@ export default function CategoryProducts({ params }) {
       try {
         const queryString = new URLSearchParams(filters).toString();
 
-        const res = await fetch(`http://localhost:3000/api/products/${category}?${queryString}`, {
+        const res = await fetch(`/api/products/${category}?${queryString}`, {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json'
@@ -41,7 +41,7 @@ export default function CategoryProducts({ params }) {
 
   const handleDelete = async (id) => {
     try {
-      const res = await fetch(`http://localhost:3000/api/products/delete/${id}`, {
+      const res = await fetch(`/api/products/delete/${id}`, {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json'
@@ -126,7 +126,6 @@ export default function CategoryProducts({ params }) {
           </div>
         </>
       }
-
     </div >
   )
 }

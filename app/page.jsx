@@ -14,7 +14,7 @@ export default function Home() {
   useEffect(() => {
     async function fetchRandomProducts() {
       try {
-        const res = await fetch('http://localhost:3000/api/products/random', {
+        const res = await fetch('/api/products/random', {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json'
@@ -63,7 +63,7 @@ export default function Home() {
 
   const handleDelete = async (id) => {
     try {
-      const res = await fetch(`http://localhost:3000/api/products/delete/${id}`, {
+      const res = await fetch(`/api/products/delete/${id}`, {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json'

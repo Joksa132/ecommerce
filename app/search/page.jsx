@@ -12,7 +12,7 @@ export default function SearchResults() {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const res = await fetch(`http://localhost:3000/api/products/get/all/${productQuery}`, {
+        const res = await fetch(`/api/products/get/all/${productQuery}`, {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json'
@@ -33,7 +33,7 @@ export default function SearchResults() {
 
   const handleDelete = async (id) => {
     try {
-      const res = await fetch(`http://localhost:3000/api/products/delete/${id}`, {
+      const res = await fetch(`/api/products/delete/${id}`, {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json'

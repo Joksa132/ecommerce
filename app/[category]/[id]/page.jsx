@@ -15,7 +15,7 @@ export default function ProductDetails({ params }) {
   useEffect(() => {
     async function fetchProduct() {
       try {
-        const res = await fetch(`http://localhost:3000/api/products/get/${id}`, {
+        const res = await fetch(`/api/products/get/${id}`, {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json'

@@ -10,7 +10,7 @@ export default function UserOrders() {
   useEffect(() => {
     const fetchTransactions = async () => {
       try {
-        const res = await fetch(`http://localhost:3000/api/transactions/get/${user.userId}`, {
+        const res = await fetch(`/api/transactions/get/${user.userId}`, {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json'
