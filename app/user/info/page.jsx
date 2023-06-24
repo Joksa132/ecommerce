@@ -10,7 +10,13 @@ export default function EditInfo() {
   const { user, setUser } = useContext(UserContext)
   const { register, handleSubmit, formState: { errors } } = useForm();
   const [success, setSuccess] = useState(null)
-  const [userData, setUserData] = useState(user)
+  const [userData, setUserData] = useState(user ?? {
+    firstName: '',
+    lastName: '',
+    address: '',
+    phone: '',
+    email: ''
+  });
 
   const onSubmit = async (data) => {
     try {
