@@ -70,6 +70,7 @@ export default function Login() {
             required
             {...register("password", { required: true })}
           />
+          <span>Test: username: marko | password: marko</span>
           {errors.password && <span style={{ color: 'red', fontWeight: "600" }}>Please enter a password</span>}
           {error ?
             <span style={{ color: 'red', fontWeight: "600" }}>{error}</span>
