@@ -14,7 +14,7 @@ export default function Home() {
   useEffect(() => {
     async function fetchRandomProducts() {
       try {
-        const res = await fetch('/api/products/random', {
+        const res = await fetch(`/api/products/random?timestamp=' + ${Date.now()}`, {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json'
@@ -22,6 +22,7 @@ export default function Home() {
         })
         const data = await res.json();
         setRandomProducts(data.randomProducts)
+        console.log(data)
       } catch (error) {
         console.log(error)
       }
