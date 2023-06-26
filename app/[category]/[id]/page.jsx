@@ -47,11 +47,11 @@ export default function ProductDetails({ params }) {
             <p style={{ marginBottom: "30px" }}>Description: {product.description}</p>
             {product.info &&
               <div className={styles["product-additional-info"]}>
-                <span>RAM memory: {product.info.ram}GB</span>
+                <span>RAM memory: {product.info.ram}</span>
                 <span>Storage memory: {product.info.storage}</span>
                 <span>Resolution: {product.info.display}</span>
                 <span>Camera: {product.info.camera}</span>
-                <span>Battery: {product.info.battery}mAh</span>
+                <span>Battery: {product.info.battery}</span>
                 <span>Operating system: {product.info.os}</span>
                 <span>Processor: {product.info.processor}</span>
               </div>
