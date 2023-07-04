@@ -5,7 +5,7 @@ import styles from './home.module.css';
 import Link from 'next/link';
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from "react-responsive-carousel";
-import ProductCard from './components/ProductCard';
+import ProductCard from '../components/ProductCard';
 
 export default function Home() {
   const [currentIndex, setCurrentIndex] = useState();
@@ -33,7 +33,7 @@ export default function Home() {
 
   const images = [
     {
-      url: 'https://images.pexels.com/photos/7679456/pexels-photo-7679456.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+      url: 'https://images.unsplash.com/photo-1593642632823-8f785ba67e45?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1332&q=80',
       pageUrl: '/Laptops',
       alt: 'laptop image',
       name: 'Laptops',

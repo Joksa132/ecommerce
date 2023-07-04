@@ -4,7 +4,7 @@ import { useEffect, useState } from "react"
 import styles from './category.module.css'
 import Icon from '@mdi/react';
 import { mdiClose } from '@mdi/js';
-import ProductCard from "../components/ProductCard";
+import ProductCard from "../../components/ProductCard";
 
 export default function CategoryProducts({ params }) {
   const { category } = params
