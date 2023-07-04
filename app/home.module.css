@@ -6,11 +6,11 @@
 }
 
 .carousel-container {
-  max-width: 100%;
+  max-width: 80%;
 }
 
 .carousel-image {
-  max-height: 500px;
+  max-height: 400px;
   max-width: 100%;
   width: 100%;
   height: auto;
@@ -32,14 +32,13 @@
   transform: translate(-50%, -50%);
   border-radius: 10px;
   border: none;
-  color: white;
   font-size: 14px;
   font-weight: bold;
   transition: background-color 0.3s ease;
 }
 
 .image-link:hover {
-  background-color: #0056b3;
+  background-color: #cdd2d8;
 }
 
 .card-container {
