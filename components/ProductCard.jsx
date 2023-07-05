@@ -16,9 +16,9 @@ export default function ProductCard({ product, handleDelete, handleQuantityChang
       }
       <div className="card-name">
         <Link href={`/${product.categories[0].name}/${product.id}`}>
-          <span>{product.title}</span>
+          <span className="card-product-title">{product.title}</span>
         </Link>
-        <span>{product.price} RSD</span>
+        <span className="card-product-price">{product.price} RSD</span>
       </div>
       {user ? (
         user.role === "ADMIN" ?
@@ -42,17 +42,17 @@ export default function ProductCard({ product, handleDelete, handleQuantityChang
                 />
               </div> : <></>
             }
-            < div className="card-actions">
+            <div className="card-actions">
               {
                 cartProducts.some((item) => item.id === product.id) ?
-                  <Icon path={mdiCartMinus} size={1.5} onClick={() => removeFromCart(product.id)} style={{ cursor: "pointer" }} />
-                  : <Icon path={mdiCartPlus} size={1.5} onClick={() => addToCart(product)} style={{ cursor: "pointer" }} />
+                  <button className="card-cart-button" onClick={() => removeFromCart(product.id)} style={{ cursor: "pointer" }}>Remove from cart</button>
+                  : <button className="card-cart-button" onClick={() => addToCart(product)} style={{ cursor: "pointer" }}>Add to cart</button>
               }
             </div>
           </>)
       ) :
         <div className="card-actions">
-          <Link href={'/user/login'}>
+          <Link href={'/user/login'} className="card-login">
             <button>Login to Order</button>
           </Link>
         </div>
