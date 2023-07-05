@@ -8,6 +8,7 @@
   --main-button-color: #123026;
   --form-input-color: #5096f2;
   --input-focus-color: #8ec2ff;
+  --heading-bg-color: #123026;
 }
 
 html,
@@ -59,10 +60,9 @@ nav {
 .shop input {
   width: 350px;
   height: 40px;
-  border-radius: 20px;
+  border-radius: 10px;
   padding: 5px 10px;
-  border: 1px solid gray;
-  background-color: var(--background-color)
+  border: 2px solid;
 }
 
 .shop input:focus {
@@ -84,7 +84,6 @@ nav {
 
 .products-dropdown {
   position: absolute;
-  background-color: var(--nav-bg-color);
   margin-top: 47px;
   padding: 10px 0;
   z-index: 1;
@@ -101,7 +100,6 @@ nav {
 
 .user-dropdown {
   position: absolute;
-  background-color: var(--nav-bg-color);
   top: 100%;
   left: 0;
   padding: 10px 0;
@@ -136,7 +134,8 @@ nav {
 }
 
 .dropdown-link:hover {
-  background-color: #c3c8cf;
+  background-color: var(--heading-bg-color);
+  color: white;
 }
 
 .user-options {
@@ -257,8 +256,8 @@ nav {
 }
 
 .link-click {
-  color: rgb(102, 102, 253);
   font-weight: 500;
+  text-decoration: underline;
 }
 
 .submit-button,
