@@ -6,8 +6,6 @@
 
 :root {
   --main-button-color: #123026;
-  --form-input-color: #5096f2;
-  --input-focus-color: #8ec2ff;
   --heading-bg-color: #123026;
 }
 
@@ -96,6 +94,7 @@ nav {
   animation-name: fade-in;
   animation-duration: 0.5s;
   animation-timing-function: ease-in-out;
+  background-color: white;
 }
 
 .user-dropdown {
@@ -117,6 +116,7 @@ nav {
   right: unset;
   transform: translateX(-50%);
   margin-left: 50%;
+  background-color: white;
 }
 
 @keyframes fade-in {
@@ -328,9 +328,9 @@ nav {
   justify-content: center;
   flex-wrap: wrap;
   gap: 20px;
-  background-color: var(--form-bg-color);
   padding: 10px;
-  border-radius: 15px;
+  border-top: 1px solid;
+  border-bottom: 1px solid;
 }
 
 .filter-group {
@@ -340,7 +340,7 @@ nav {
 
 .card-container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 40px;
   max-width: 1200px;
   margin: 10px;
