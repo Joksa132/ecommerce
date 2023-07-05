@@ -50,7 +50,9 @@ export default function SearchResults() {
 
   return (
     <div className='card-outer-container'>
-      <h1 style={{ marginTop: "20px" }}>Search results for {productQuery}</h1>
+      <div className="heading-container">
+        <h1>Search results for <span style={{ fontStyle: "italic" }}>{productQuery}</span></h1>
+      </div>
       {products.length ?
         <div className='card-container'>
           {products.map(product => (

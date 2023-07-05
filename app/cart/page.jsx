@@ -60,7 +60,9 @@ export default function Cart() {
 
   return (
     <div className="card-outer-container">
-      <h1 style={{ marginTop: "20px" }}>Cart</h1>
+      <div className="heading-container">
+        <h1>Cart</h1>
+      </div>
       {cartProducts.length ?
         <>
           <div className="total-price">
@@ -84,13 +86,13 @@ export default function Cart() {
           {successMessage ?
             <>
               <span>{successMessage}</span>
-              <Link href={"/orders"}>
+              <Link className='cart-button-container' href={"/orders"}>
                 <button>Track your order status</button>
               </Link>
             </> :
             <>
               <span>Your Cart is currently empty</span>
-              <Link href={"/"}>
+              <Link className='cart-button-container' href={"/"}>
                 <button>Return to home page</button>
               </Link>
             </>

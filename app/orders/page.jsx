@@ -29,7 +29,9 @@ export default function UserOrders() {
 
   return (
     <div className="orders-container">
-      <h1>Your orders</h1>
+      <div className="heading-container">
+        <h1>Your orders</h1>
+      </div>
       {transactionInfo.length > 0 ? (
         <table className="orders-table">
           <thead>
