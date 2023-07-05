@@ -5,10 +5,7 @@
 }
 
 :root {
-  --form-bg-color: #044c94;
-  --nav-bg-color: #F2F2F2;
-  --main-button-color: white;
-  --background-color: #F2F2F2;
+  --main-button-color: #123026;
   --form-input-color: #5096f2;
   --input-focus-color: #8ec2ff;
 }
@@ -16,7 +13,6 @@
 html,
 body {
   max-width: 100vw;
-  background-color: var(--background-color);
   color: black;
 }
 
@@ -26,12 +22,13 @@ a {
 }
 
 nav {
-  background-color: var(--nav-bg-color);
+  background-color: white;
   padding: 5px;
   position: sticky;
   top: 0;
   width: 100%;
   z-index: 999;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }
 
 .nav-container {
@@ -231,7 +228,6 @@ nav {
   padding: 30px;
   border-radius: 10px;
   border: 2px solid #002242;
-  background-color: aliceblue;
 }
 
 .form-container-header {
@@ -253,7 +249,7 @@ nav {
   height: 30px;
   border-radius: 5px;
   padding: 5px 10px;
-  border: 1px solid var(--form-bg-color);
+  border: 2px solid;
 }
 
 .link-msg {
@@ -267,7 +263,8 @@ nav {
 
 .submit-button,
 .additional-info-button {
-  background-color: rgb(212, 231, 248);
+  background-color: var(--main-button-color);
+  color: white;
   font-size: 1.2rem;
   font-weight: 500;
   border-radius: 5px;
@@ -371,35 +368,22 @@ nav {
   max-width: 100%;
   height: 200px;
   object-fit: cover;
-  border-radius: 15px 15px 0 0;
 }
 
 .card-name {
   display: flex;
-  justify-content: center;
-  gap: 30px;
+  flex-direction: column;
+  gap: 10px;
 }
 
-.card span {
+.card-product-title {
+  font-size: 1.1rem;
+  font-weight: 500;
+}
+
+.card-product-price {
   font-size: 1rem;
-  font-weight: bold;
-  margin-bottom: 10px;
-}
-
-.card p {
-  font-size: 1.2rem;
-  margin-bottom: 15px;
-}
-
-.card button,
-.empty-cart button,
-.total-price button {
-  padding: 10px;
-  font-size: 1rem;
-  background-color: var(--main-button-color);
-  cursor: pointer;
-  border-radius: 15px;
-  border: none;
+  font-weight: 400;
 }
 
 .card input {
@@ -427,9 +411,24 @@ nav {
 
 .card-actions {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
+  width: 100%;
+}
+
+.card-actions button {
+  font-size: 1rem;
+  font-weight: 600;
+  background-color: var(--main-button-color);
+  cursor: pointer;
+  border-radius: 15px;
+  border: none;
+  color: white;
+  width: 100%;
+  height: 40px;
+}
+
+.card-login {
+  display: flex;
+  width: 100%;
 }
 
 .total-price {
