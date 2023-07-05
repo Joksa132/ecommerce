@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { useContext } from "react";
-import { UserContext } from "../app/context/userContext";
-import { CartContext } from "../app/context/cartContext";
+import { UserContext } from "../context/userContext";
+import { CartContext } from "../context/cartContext";
 import Icon from '@mdi/react';
 import { mdiCartMinus, mdiCartPlus } from "@mdi/js";
 

@@ -1,7 +1,7 @@
 "use client"
 
 import { useContext, useEffect, useState } from "react"
-import { UserContext } from "../context/userContext"
+import { UserContext } from "../../context/userContext"
 
 export default function UserOrders() {
   const { user } = useContext(UserContext)

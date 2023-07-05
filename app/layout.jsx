@@ -1,8 +1,8 @@
 import Nav from '../components/Nav'
 import './globals.css'
 import { Inter } from 'next/font/google'
-import { UserProvider } from './context/userContext'
-import { CartProvider } from './context/cartContext'
+import { UserProvider } from '../context/userContext'
+import { CartProvider } from '../context/cartContext'
 
 const inter = Inter({ subsets: ['latin'] })
 

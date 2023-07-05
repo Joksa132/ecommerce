@@ -3,10 +3,10 @@
 import Link from "next/link"
 import Icon from '@mdi/react';
 import { mdiMenu, mdiCartVariant, mdiAccount } from '@mdi/js';
-import { UserContext } from "../app/context/userContext";
+import { UserContext } from "../context/userContext";
 import { useContext, useEffect, useState } from "react";
 import Cookies from "js-cookie";
-import { CartContext } from "../app/context/cartContext";
+import { CartContext } from "../context/cartContext";
 import { useRouter } from "next/navigation";
 
 export default function Nav() {

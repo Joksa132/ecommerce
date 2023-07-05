@@ -2,7 +2,7 @@
 
 import { useContext, useState } from 'react'
 import styles from './info.module.css'
-import { UserContext } from '@/app/context/userContext'
+import { UserContext } from '@/context/userContext'
 import Cookies from "js-cookie";
 import { useForm } from 'react-hook-form';
 

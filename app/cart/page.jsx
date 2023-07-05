@@ -1,9 +1,9 @@
 "use client"
 
 import { useContext, useState } from 'react';
-import { CartContext } from '../context/cartContext';
+import { CartContext } from '../../context/cartContext';
 import Link from 'next/link';
-import { UserContext } from '../context/userContext';
+import { UserContext } from '../../context/userContext';
 import ProductCard from '../../components/ProductCard';
 
 export default function Cart() {

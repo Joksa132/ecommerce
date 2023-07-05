@@ -2,8 +2,8 @@
 
 import { useContext, useEffect, useState } from "react"
 import styles from './product.module.css'
-import { CartContext } from "@/app/context/cartContext"
-import { UserContext } from "@/app/context/userContext"
+import { CartContext } from "@/context/cartContext"
+import { UserContext } from "@/context/userContext"
 import Link from "next/link"
 
 export default function ProductDetails({ params }) {
