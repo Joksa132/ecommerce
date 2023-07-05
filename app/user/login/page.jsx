@@ -53,6 +53,7 @@ export default function Login() {
           <h2>Login</h2>
           <span className="link-msg">Don't have an account? <Link href="/user/register" className="link-click">Register here!</Link></span>
         </div>
+        <hr></hr>
         <form className="form-input-container" onSubmit={handleSubmit(onSubmit)}>
           <label htmlFor="email">Email address *</label>
           <input
@@ -61,6 +62,8 @@ export default function Login() {
             id="email"
             required
             {...register("email", { required: true })}
+            style={{ marginBottom: "17px" }}
+            placeholder="Use 'marko' to test"
           />
           <label htmlFor="password">Password *</label>
           <input
@@ -69,8 +72,9 @@ export default function Login() {
             id="password"
             required
             {...register("password", { required: true })}
+            style={{ marginBottom: "25px" }}
+            placeholder="Use 'marko' to test"
           />
-          <span>Test: username: marko | password: marko</span>
           {errors.password && <span style={{ color: 'red', fontWeight: "600" }}>Please enter a password</span>}
           {error ?
             <span style={{ color: 'red', fontWeight: "600" }}>{error}</span>
