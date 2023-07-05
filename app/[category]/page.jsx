@@ -56,7 +56,7 @@ export default function CategoryProducts({ params }) {
     }
   }
 
-  const infoFields = ['ram', 'storage', 'display', 'os', 'battery', 'camera', 'processor',];
+  const infoFields = ['ram', 'storage', 'display', 'os', 'battery'];
   const availableInfoValues = infoFields.reduce((values, field) => {
     const uniqueValues = Array.from(new Set(allProducts.map(product => product.info?.[field]))).filter(Boolean);
     const sortedValues = uniqueValues.sort((a, b) => a.localeCompare(b, undefined, { numeric: true }));
@@ -82,7 +82,9 @@ export default function CategoryProducts({ params }) {
 
   return (
     <div className="card-outer-container">
-      <h1 style={{ marginTop: "20px" }}>{category}</h1>
+      <div className={styles["heading-container"]}>
+        <h1>{category}</h1>
+      </div>
       {pageLoading ?
         <div className="loading-spinner"></div>
         :
