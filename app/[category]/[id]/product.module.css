@@ -1,13 +1,19 @@
 .container {
   display: flex;
-  gap: 100px;
+  flex-direction: column;
+  gap: 50px;
   height: 100vh;
-  margin-left: 100px;
-  margin-top: 30px;
+}
+
+.main-container {
+  display: flex;
+  justify-content: center;
+  gap: 100px;
+  margin-top: 50px;
 }
 
 .product-image {
-  height: 500px;
+  height: 600px;
   width: 500px;
 }
 
@@ -20,6 +26,22 @@
 .product-info {
   display: flex;
   flex-direction: column;
+  margin-top: 20px;
+}
+
+.product-info h1 {
+  font-size: 3rem;
+  margin-bottom: 20px;
+}
+
+.product-info p {
+  font-size: 1.2rem;
+}
+
+.price-info {
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+  font-weight: 500;
 }
 
 .cart-button,
@@ -28,15 +50,43 @@
   margin-top: 20px;
   padding: 5px;
   font-size: 1rem;
-  background-color: #3498db;
+  background-color: var(--main-button-color);
   color: white;
   cursor: pointer;
   border-radius: 10px;
   border: none;
+  width: 200px;
 }
 
 .product-additional-info {
   display: flex;
   flex-direction: column;
-  margin-bottom: 20px;
+  font-size: 1.2rem;
+  margin-top: 10px;
+}
+
+.info-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 10px;
+}
+
+.info-container button {
+  border: none;
+  background-color: inherit;
+  font-size: 1.5rem;
+}
+
+.description-info,
+.specifications-info {
+  display: flex;
+  flex-direction: column;
+  font-size: 1.5rem;
+}
+
+.description-button {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
 }
