@@ -63,7 +63,7 @@ export default function Login() {
             required
             {...register("email", { required: true })}
             style={{ marginBottom: "17px" }}
-            placeholder="Use 'marko' to test"
+            placeholder="Use 'marko@gmail.com' to test"
           />
           <label htmlFor="password">Password *</label>
           <input
