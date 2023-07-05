@@ -6,7 +6,7 @@ import { CartContext } from "@/context/cartContext"
 import { UserContext } from "@/context/userContext"
 import Link from "next/link"
 import Icon from '@mdi/react';
-import { mdiMenuDown, mdiCartVariant } from '@mdi/js';
+import { mdiMenuDown, mdiCartVariant, mdiCartPlus, mdiCartRemove } from '@mdi/js';
 
 export default function ProductDetails({ params }) {
   const { id } = params
@@ -85,8 +85,12 @@ export default function ProductDetails({ params }) {
                 user ? <>
                   {
                     cartProducts.some((item) => item.id === product.id) ?
-                      <button onClick={() => removeFromCart(product.id)} className={styles["cart-button"]}>Remove from Cart</button>
-                      : <button onClick={() => addToCart(product)} className={styles["cart-button"]}>Add to Cart</button>}
+                      <button onClick={() => removeFromCart(product.id)} className={styles["cart-button"]} style={{ marginRight: "10px" }}>
+                        <Icon path={mdiCartRemove} size={0.6} />
+                        Remove from Cart</button>
+                      : <button onClick={() => addToCart(product)} className={styles["cart-button"]} style={{ marginRight: "10px" }}>
+                        <Icon path={mdiCartPlus} size={0.6} />
+                        Add to Cart</button>}
                 </>
                   : <Link href={'/user/login'}>
                     <button className={styles["login-button"]}>
