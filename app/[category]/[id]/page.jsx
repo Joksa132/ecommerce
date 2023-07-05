@@ -6,7 +6,7 @@ import { CartContext } from "@/context/cartContext"
 import { UserContext } from "@/context/userContext"
 import Link from "next/link"
 import Icon from '@mdi/react';
-import { mdiMenuDown } from '@mdi/js';
+import { mdiMenuDown, mdiCartVariant } from '@mdi/js';
 
 export default function ProductDetails({ params }) {
   const { id } = params
@@ -89,7 +89,9 @@ export default function ProductDetails({ params }) {
                       : <button onClick={() => addToCart(product)} className={styles["cart-button"]}>Add to Cart</button>}
                 </>
                   : <Link href={'/user/login'}>
-                    <button className={styles["login-button"]}>Login to Order</button>
+                    <button className={styles["login-button"]}>
+                      <Icon path={mdiCartVariant} size={0.6} style={{ marginRight: "10px" }} />
+                      Login to order</button>
                   </Link>
               }
             </div>
