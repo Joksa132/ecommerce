@@ -51,7 +51,7 @@
 }
 
 .heading-container {
-  background-color: #123026;
+  background-color: var(--heading-bg-color);
   width: 100%;
   display: flex;
   justify-content: center;
