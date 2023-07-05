@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;600&display=swap');
+
 * {
   box-sizing: border-box;
   padding: 0;
@@ -7,17 +9,25 @@
 :root {
   --main-button-color: #123026;
   --heading-bg-color: #123026;
+  --input-border-color: rgba(0, 0, 0, 0.3);
 }
 
 html,
 body {
   max-width: 100vw;
   color: black;
+  font-family: 'Poppins', sans-serif;
 }
 
 a {
   color: inherit;
   text-decoration: none;
+}
+
+input,
+select,
+button {
+  font-family: 'Poppins', sans-serif;
 }
 
 nav {
@@ -60,7 +70,7 @@ nav {
   height: 40px;
   border-radius: 10px;
   padding: 5px 10px;
-  border: 2px solid;
+  border: 1px solid var(--input-border-color)
 }
 
 .shop input:focus {
@@ -223,10 +233,10 @@ nav {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
   padding: 30px;
+  width: 400px;
   border-radius: 10px;
-  border: 2px solid #002242;
 }
 
 .form-container-header {
@@ -237,26 +247,33 @@ nav {
   gap: 10px;
 }
 
+.form-container hr {
+  border: 1px solid rgba(77, 77, 77, 0.07);
+  margin-top: 7px;
+}
+
 .form-input-container {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 5px;
   margin-top: 20px;
 }
 
 .form-input-container input {
-  height: 30px;
   border-radius: 5px;
-  padding: 5px 10px;
-  border: 2px solid;
+  padding: 7px 7px 7px 10px;
+  border: 1px solid rgba(0, 0, 0, 0.3)
 }
 
+.form-input-container label,
 .link-msg {
-  font-size: 1.1rem;
+  font-size: 0.8125rem;
 }
+
+.link-msg {}
 
 .link-click {
-  font-weight: 500;
+  font-weight: 600;
   text-decoration: underline;
 }
 
@@ -267,9 +284,10 @@ nav {
   font-size: 1.2rem;
   font-weight: 500;
   border-radius: 5px;
+  padding: 7px;
   margin-top: 10px;
-  height: 30px;
   cursor: pointer;
+  border: none;
 }
 
 .main-info {
