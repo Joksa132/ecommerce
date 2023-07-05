@@ -385,21 +385,12 @@ nav {
   font-weight: 400;
 }
 
-.card input {
-  border: 1px solid black;
-  background-color: var(--background-color);
-}
-
-.card input:focus {
-  outline: none;
-  border-color: var(--input-focus-color)
-}
-
 .empty-cart {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 20px;
+  width: 100%;
 }
 
 .empty-cart span {
@@ -413,8 +404,13 @@ nav {
   width: 100%;
 }
 
+.empty-cart button {
+  padding: 5px;
+}
+
 .card-actions button,
-.total-price button {
+.total-price button,
+.empty-cart button {
   font-size: 1rem;
   font-weight: 600;
   background-color: var(--main-button-color);
@@ -456,6 +452,22 @@ nav {
   font-size: 1rem;
   padding-left: 5px;
   border: 2px solid;
+}
+
+.product-quantity input:focus {
+  outline: none;
+}
+
+.heading-container {
+  background-color: var(--heading-bg-color);
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  min-height: 80px;
+  margin-bottom: 20px;
+  font-size: 1.2rem;
 }
 
 @media (max-width: 1100px) {
@@ -516,7 +528,8 @@ nav {
 }
 
 .orders-table th {
-  background-color: var(--form-bg-color);
+  background-color: var(--heading-bg-color);
+  color: white;
 }
 
 .orders-table td {
@@ -524,7 +537,8 @@ nav {
 }
 
 .orders-table tbody tr:hover {
-  background-color: var(--form-bg-color);
+  background-color: var(--heading-bg-color);
+  color: white;
 }
 
 .orders-table select {
