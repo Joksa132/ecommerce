@@ -51,13 +51,13 @@ export default function ProductDetails({ params }) {
               <h1>{product.title}</h1>
               <span className={styles["price-info"]}>{product.price} RSD</span>
               <div className={styles["info-container"]}>
-                <div className={styles["description-info"]}>
+                <div className={styles["description-info"]} style={{ marginBottom: "10px" }}>
                   <div className={styles["description-button"]} onClick={() => setDescriptionClicked(!descriptionClicked)}>
                     <button>Description</button>
                     <Icon path={mdiMenuDown} size={1} />
                   </div>
                   {descriptionClicked &&
-                    <p style={{ marginTop: "10px" }}>{product.description}</p>
+                    <p style={{ marginTop: "3px" }}>{product.description}</p>
                   }
                 </div>
                 <div className={styles["specifications-info"]}>
