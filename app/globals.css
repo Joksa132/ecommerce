@@ -541,6 +541,12 @@ nav {
   color: white;
 }
 
+.orders-table tbody tr:hover button,
+.orders-table tbody tr:hover select {
+  background-color: white;
+  color: black;
+}
+
 .orders-table select {
   padding: 0.5rem;
   background-color: var(--main-button-color);
