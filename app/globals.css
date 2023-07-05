@@ -413,7 +413,8 @@ nav {
   width: 100%;
 }
 
-.card-actions button {
+.card-actions button,
+.total-price button {
   font-size: 1rem;
   font-weight: 600;
   background-color: var(--main-button-color);
@@ -448,6 +449,13 @@ nav {
   gap: 5px;
   font-size: 1.2rem;
   margin-top: 20px;
+}
+
+.product-quantity input {
+  height: 30px;
+  font-size: 1rem;
+  padding-left: 5px;
+  border: 2px solid;
 }
 
 @media (max-width: 1100px) {
