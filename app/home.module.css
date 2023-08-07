@@ -12,7 +12,7 @@
 }
 
 .cover-image {
-  height: 70vh;
+  height: 80vh;
   width: 100%;
   object-fit: cover;
   opacity: 0.4;
@@ -22,7 +22,7 @@
   position: absolute;
   top: 50%;
   left: 10%;
-  width: 700px;
+  width: 750px;
   color: white;
   font-size: 3rem;
   font-weight: bolder;
@@ -58,12 +58,24 @@
     gap: 10px;
     grid-template-columns: repeat(3, 1fr);
   }
+
+  .image-container span {
+    font-size: 2.8rem;
+  }
+}
+
+@media (max-width: 850px) {
+  .image-container span {
+    width: 650px;
+    font-size: 2.6rem;
+  }
 }
 
 @media (max-width: 800px) {
   .image-container span {
-    width: 500px;
-    font-size: 2rem;
+    width: 550px;
+    top: 60%;
+    font-size: 2.2rem;
   }
 }
 
@@ -82,11 +94,11 @@
   }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 650px) {
   .image-container span {
     top: 60%;
-    width: 400px;
-    font-size: 1.5rem;
+    width: 450px;
+    font-size: 1.8rem;
   }
 }
 
@@ -97,14 +109,15 @@
 
   .image-container span {
     top: 70%;
-    width: 300px;
-    font-size: 1rem;
+    width: 350px;
+    font-size: 1.4rem;
   }
 }
 
-@media (max-width: 350px) {
+@media (max-width: 400px) {
 
   .image-container span {
     width: 250px;
+    font-size: 1rem;
   }
 }
