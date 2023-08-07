@@ -116,9 +116,9 @@ nav {
 
 .user-dropdown {
   position: absolute;
-  top: 100%;
-  left: 50px;
-  padding: 5px 20px 0;
+  margin-top: 200px;
+  right: 0;
+  padding: 10px 0;
   z-index: 1;
   min-width: 100px;
   border-top: none;
@@ -129,9 +129,6 @@ nav {
   animation-name: fade-in;
   animation-duration: 0.5s;
   animation-timing-function: ease-in-out;
-  right: unset;
-  transform: translateX(-50%);
-  margin-left: 50%;
   background-color: white;
 }
 
