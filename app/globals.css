@@ -30,6 +30,11 @@ button {
   font-family: 'Poppins', sans-serif;
 }
 
+.container {
+  max-width: 1240px;
+  margin: 0 auto;
+}
+
 nav {
   background-color: white;
   padding: 5px;
@@ -44,7 +49,6 @@ nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: 10px;
 }
 
 .nav-container>div {
@@ -52,11 +56,9 @@ nav {
   gap: 20px;
 }
 
-.logo {
-  display: flex;
-  align-items: center;
-  font-size: 30px;
-  font-weight: 600;
+.home-link {
+  font-size: 20px;
+  font-weight: 500;
 }
 
 .shop {
@@ -174,10 +176,8 @@ nav {
 }
 
 @media (max-width: 900px) {
-  .logo {
-    font-size: 20px;
-  }
 
+  .home-link,
   .product-menu,
   .user-options {
     font-size: 15px;
@@ -194,21 +194,9 @@ nav {
 }
 
 @media (max-width: 750px) {
-  .logo {
-    font-size: 15px;
-  }
-
-  .product-menu,
-  .user-options {
-    font-size: 15px;
-  }
 
   .nav-container>div {
     gap: 10px;
-  }
-
-  .nav-container {
-    margin: 5px;
   }
 
   .nav-cart,
@@ -217,17 +205,15 @@ nav {
   }
 }
 
-@media (max-width: 650px) {
-  .logo {
-    display: none !important
-  }
-}
-
-@media (max-width: 570px) {
+@media (max-width: 600px) {
   .nav-container {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+  }
+
+  .home-link {
+    display: none;
   }
 
   .product-menu {
@@ -242,7 +228,7 @@ nav {
   }
 }
 
-@media (max-width: 330px) {
+@media (max-width: 380px) {
 
   .product-menu,
   .user-options {
