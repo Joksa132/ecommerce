@@ -49,9 +49,9 @@ export default function SearchResults() {
   }
 
   return (
-    <div className='card-outer-container'>
-      <div className="heading-container">
-        <h1>Search results for <span style={{ fontStyle: "italic" }}>{productQuery}</span></h1>
+    <div className='card-outer-container container'>
+      <div style={{ display: "flex", alignContent: "center", marginTop: "30px" }}>
+        <h2>Search results for <span style={{ fontStyle: "italic" }}>{productQuery}</span></h2>
       </div>
       {products.length ?
         <div className='card-container'>
