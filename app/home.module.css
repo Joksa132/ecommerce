@@ -101,3 +101,10 @@
     font-size: 1rem;
   }
 }
+
+@media (max-width: 350px) {
+
+  .image-container span {
+    width: 250px;
+  }
+}
