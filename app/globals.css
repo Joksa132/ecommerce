@@ -56,6 +56,28 @@ nav {
   gap: 20px;
 }
 
+.nav-left-links {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.product-menu {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.product-menu-top {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  gap: 2px;
+}
+
 .home-link {
   font-size: 20px;
   font-weight: 500;
@@ -83,20 +105,6 @@ nav {
 
 .shop input:focus {
   outline: none;
-}
-
-.product-menu {
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-}
-
-.product-menu-top {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-  gap: 2px;
 }
 
 .products-dropdown {
@@ -210,19 +218,11 @@ nav {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-  }
-
-  .home-link {
-    display: none;
-  }
-
-  .product-menu {
-    font-size: 20px;
+    gap: 5px;
   }
 
   .user-options {
-    font-size: 20px;
-    margin-top: 10px;
+    font-size: 15px;
     display: flex;
     align-items: center;
   }
@@ -230,13 +230,13 @@ nav {
 
 @media (max-width: 380px) {
 
-  .product-menu,
+  .nav-left-links,
   .user-options {
     font-size: 10px;
   }
 
   .shop input {
-    width: 150px;
+    width: 200px;
   }
 }
 
