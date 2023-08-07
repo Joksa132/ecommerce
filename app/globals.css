@@ -117,8 +117,8 @@ nav {
 .user-dropdown {
   position: absolute;
   top: 100%;
-  left: 0;
-  padding: 10px 0;
+  left: 50px;
+  padding: 5px 20px 0;
   z-index: 1;
   min-width: 100px;
   border-top: none;
@@ -129,7 +129,6 @@ nav {
   animation-name: fade-in;
   animation-duration: 0.5s;
   animation-timing-function: ease-in-out;
-  left: 0;
   right: unset;
   transform: translateX(-50%);
   margin-left: 50%;
@@ -173,7 +172,7 @@ nav {
 
 @media (max-width: 1000px) {
   .shop input {
-    width: 200px;
+    width: 250px;
   }
 }
 
@@ -199,7 +198,7 @@ nav {
 
 @media (max-width: 750px) {
   .logo {
-    display: none !important;
+    font-size: 15px;
   }
 
   .product-menu,
@@ -221,15 +220,17 @@ nav {
   }
 }
 
+@media (max-width: 650px) {
+  .logo {
+    display: none !important
+  }
+}
+
 @media (max-width: 570px) {
   .nav-container {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-  }
-
-  .logo {
-    display: none !important
   }
 
   .product-menu {
