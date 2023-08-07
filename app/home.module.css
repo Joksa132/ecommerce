@@ -12,7 +12,7 @@
 }
 
 .cover-image {
-  height: 80vh;
+  height: 75vh;
   width: 100%;
   object-fit: cover;
   opacity: 0.4;
@@ -21,7 +21,6 @@
 .image-container span {
   position: absolute;
   top: 50%;
-  left: 10%;
   width: 750px;
   color: white;
   font-size: 3rem;
@@ -31,6 +30,7 @@
 
 .card-outer-container {
   margin-top: 50px;
+  width: 100%;
 }
 
 .card-outer-container h2 {
@@ -46,7 +46,6 @@
   padding-bottom: 20px;
   text-align: center;
   justify-items: center;
-  box-sizing: border-box;
 }
 
 .card-container button {
