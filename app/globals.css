@@ -53,6 +53,8 @@ nav {
 }
 
 .logo {
+  display: flex;
+  align-items: center;
   font-size: 30px;
   font-weight: 600;
 }
@@ -67,10 +69,14 @@ nav {
 
 .shop input {
   width: 350px;
-  height: 40px;
-  border-radius: 10px;
-  padding: 5px 10px;
-  border: 1px solid var(--input-border-color)
+  border-radius: 25px;
+  padding: 8px 10px 8px 20px;
+  border: 1px solid var(--input-border-color);
+  font-size: 1rem;
+}
+
+.shop input::placeholder {
+  font-size: 1rem;
 }
 
 .shop input:focus {
@@ -79,6 +85,7 @@ nav {
 
 .product-menu {
   display: flex;
+  align-items: center;
   flex-direction: column;
 }
 
@@ -153,7 +160,6 @@ nav {
   align-items: center;
   font-size: 20px;
   font-weight: 500;
-
   position: relative;
 }
 
@@ -162,7 +168,7 @@ nav {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 2px;
+  gap: 5px;
 }
 
 @media (max-width: 1000px) {
@@ -171,17 +177,47 @@ nav {
   }
 }
 
-@media (max-width: 850px) {
+@media (max-width: 900px) {
   .logo {
+    font-size: 20px;
+  }
+
+  .product-menu,
+  .user-options {
     font-size: 15px;
   }
 
-  .product-menu {
-    font-size: 10px;
+  .shop input {
+    font-size: 0.8rem;
+    padding: 5px 5px 5px 10px;
   }
 
+  .shop input::placeholder {
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 750px) {
+  .logo {
+    display: none !important;
+  }
+
+  .product-menu,
   .user-options {
-    font-size: 10px;
+    font-size: 15px;
+  }
+
+  .nav-container>div {
+    gap: 10px;
+  }
+
+  .nav-container {
+    margin: 5px;
+  }
+
+  .nav-cart,
+  .nav-account {
+    gap: 2px;
   }
 }
 
@@ -197,7 +233,7 @@ nav {
   }
 
   .product-menu {
-    font-size: 15px;
+    font-size: 20px;
   }
 
   .user-options {
@@ -208,7 +244,7 @@ nav {
   }
 }
 
-@media (max-width: 310px) {
+@media (max-width: 330px) {
 
   .product-menu,
   .user-options {
