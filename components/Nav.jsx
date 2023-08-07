@@ -69,21 +69,20 @@ export default function Nav() {
               <Icon path={mdiChevronDown} size={1} />
             </div>
             {productDropdown &&
-              <div className="products-dropdown">
+              <ul className="products-dropdown">
                 {categories?.map((category) => (
-                  <Link
-                    href={`/${category.name}`}
-                    key={category.id}
-                    className="dropdown-link"
-                  >
-                    {category.name}
-                  </Link>
+                  <li key={category.id} className="dropdown-link">
+                    <Link
+                      href={`/${category.name}`}
+                    >
+                      {category.name}
+                    </Link>
+                  </li>
                 ))}
-              </div>
+              </ul>
             }
           </div>
         </div>
-
         <div className="shop">
           <form onSubmit={(e) => handleSearch(e)}>
             <input
@@ -98,36 +97,50 @@ export default function Nav() {
         <div className="user-options">
           {user ?
             <>
-              {user.role === "ADMIN" ?
-                <div className="nav-account" onClick={handleUserDropdown} style={{ cursor: "pointer" }}>
-                  <Icon path={mdiAccount} size={1} />
-                  <span>Admin Dashboard</span>
-                </div>
-                :
-                <>
-                  <Link href="/cart" className="nav-cart">
-                    <span>{cartProducts.length ? cartProducts.length : <></>}</span>
-                    <Icon path={mdiCartVariant} size={1} />
-                    <span>Cart</span>
-                  </Link>
+              <div className="user-options-top">
+                {user.role === "ADMIN" ?
                   <div className="nav-account" onClick={handleUserDropdown} style={{ cursor: "pointer" }}>
                     <Icon path={mdiAccount} size={1} />
-                    <span>Hey, {user.firstName}</span>
+                    <span>Admin Dashboard</span>
                   </div>
-                </>
-              }
+                  :
+                  <>
+                    <Link href="/cart" className="nav-cart">
+                      <span>{cartProducts.length ? cartProducts.length : <></>}</span>
+                      <Icon path={mdiCartVariant} size={1} />
+                      <span>Cart</span>
+                    </Link>
+                    <div className="nav-account" onClick={handleUserDropdown} style={{ cursor: "pointer" }}>
+                      <Icon path={mdiAccount} size={1} />
+                      <span>Hey, {user.firstName}</span>
+                    </div>
+                  </>
+                }
+              </div>
               {userDropdown &&
                 (user.role === "ADMIN" ?
-                  <div className="user-dropdown">
-                    <Link href="/dashboard/products" className="dropdown-link">Add Products</Link>
-                    <Link href="/dashboard/transactions" className="dropdown-link">View Transactions</Link>
-                    <Link href="" className="dropdown-link" onClick={logoutUser}>Logout</Link>
-                  </div>
-                  : <div className="user-dropdown">
-                    <Link href="/user/info" className="dropdown-link">Change Info</Link>
-                    <Link href="/orders" className="dropdown-link">View Orders</Link>
-                    <Link href="" className="dropdown-link" onClick={logoutUser}>Logout</Link>
-                  </div>
+                  <ul className="user-dropdown">
+                    <li className="dropdown-link">
+                      <Link href="/dashboard/products" className="dropdown-link">Add Products</Link>
+                    </li>
+                    <li className="dropdown-link">
+                      <Link href="/dashboard/transactions" className="dropdown-link">View Transactions</Link>
+                    </li>
+                    <li className="dropdown-link">
+                      <Link href="" className="dropdown-link" onClick={logoutUser}>Logout</Link>
+                    </li>
+                  </ul>
+                  : <ul className="user-dropdown">
+                    <li className="dropdown-link">
+                      <Link href="/user/info" className="dropdown-link">Change Info</Link>
+                    </li>
+                    <li className="dropdown-link">
+                      <Link href="/orders" className="dropdown-link">View Orders</Link>
+                    </li>
+                    <li className="dropdown-link">
+                      <Link href="" className="dropdown-link" onClick={logoutUser}>Logout</Link>
+                    </li>
+                  </ul>
                 )
               }
             </> :
