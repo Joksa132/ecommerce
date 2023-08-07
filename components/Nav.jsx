@@ -59,10 +59,10 @@ export default function Nav() {
   return (
     <nav>
       <div className="container nav-container">
-        <Link href={"/"} className="home-link">
-          Home
-        </Link>
-        <div className="shop">
+        <div className="nav-left-links">
+          <Link href={"/"} className="home-link">
+            Home
+          </Link>
           <div className="product-menu">
             <div className="product-menu-top" onClick={handleProductDropdown}>
               <span>Products</span>
@@ -82,6 +82,9 @@ export default function Nav() {
               </div>
             }
           </div>
+        </div>
+
+        <div className="shop">
           <form onSubmit={(e) => handleSearch(e)}>
             <input
               type="text"
