@@ -58,10 +58,10 @@ export default function Nav() {
 
   return (
     <nav>
-      <div className="nav-container">
-        <div className="logo">
-          <Link href="/">Ecommerce</Link>
-        </div>
+      <div className="container nav-container">
+        <Link href={"/"} className="home-link">
+          Home
+        </Link>
         <div className="shop">
           <div className="product-menu">
             <div className="product-menu-top" onClick={handleProductDropdown}>
