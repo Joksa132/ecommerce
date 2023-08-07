@@ -9,7 +9,7 @@ export async function GET(request) {
     },
   });
 
-  const randomProducts = shuffleArray(products).slice(0, 5);
+  const randomProducts = shuffleArray(products).slice(0, 4);
 
   return NextResponse.json({ success: true, randomProducts })
 }
