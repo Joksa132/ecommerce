@@ -7,15 +7,3 @@
   display: flex;
   gap: 20px;
 }
-
-.heading-container {
-  background-color: var(--heading-bg-color);
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: white;
-  min-height: 80px;
-  margin-bottom: 20px;
-  font-size: 1.2rem;
-}
