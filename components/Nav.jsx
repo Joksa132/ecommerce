@@ -118,14 +118,15 @@ export default function Nav() {
                   <div className="user-dropdown">
                     <Link href="/dashboard/products" className="dropdown-link">Add Products</Link>
                     <Link href="/dashboard/transactions" className="dropdown-link">View Transactions</Link>
+                    <Link href="" className="dropdown-link" onClick={logoutUser}>Logout</Link>
                   </div>
                   : <div className="user-dropdown">
                     <Link href="/user/info" className="dropdown-link">Change Info</Link>
                     <Link href="/orders" className="dropdown-link">View Orders</Link>
+                    <Link href="" className="dropdown-link" onClick={logoutUser}>Logout</Link>
                   </div>
                 )
               }
-              <span style={{ cursor: "pointer" }} onClick={logoutUser}>Logout</span>
             </> :
             <Link href="/user/login" className="nav-account">
               <Icon path={mdiAccount} size={1} />
