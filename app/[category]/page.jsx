@@ -3,8 +3,9 @@
 import { useEffect, useState } from "react"
 import styles from './category.module.css'
 import Icon from '@mdi/react';
-import { mdiClose } from '@mdi/js';
+import { mdiClose, mdiFilterVariant } from '@mdi/js';
 import ProductCard from "../../components/ProductCard";
+import FiltersSidebar from "@/components/FiltersSidebar";
 
 export default function CategoryProducts({ params }) {
   const { category } = params
@@ -13,6 +14,7 @@ export default function CategoryProducts({ params }) {
   const [message, setMessage] = useState(null)
   const [filters, setFilters] = useState({})
   const [pageLoading, setPageLoading] = useState(true)
+  const [isFiltersClicked, setIsFiltersClicked] = useState(false)
 
   useEffect(() => {
     async function fetchProducts() {
@@ -81,53 +83,45 @@ export default function CategoryProducts({ params }) {
   };
 
   return (
-    <div className="card-outer-container">
-      <div className={styles["heading-container"]}>
-        <h1>{category}</h1>
-      </div>
-      {pageLoading ?
-        <div className="loading-spinner"></div>
-        :
+    <div className="product-page-container">
+      <div className="card-outer-container container">
+        <div className="product-page-header">
+          <h1>{category}</h1>
+          <span onClick={() => setIsFiltersClicked(true)}>
+            <Icon path={mdiFilterVariant} size={1} />
+            Filter
+          </span>
+        </div>
+        {pageLoading ?
+          <div className="loading-spinner"></div>
+          :
+          <>
+            {
+              message ?
+                <div className={styles["message-container"]}>
+                  <span>{message.title} has been deleted!</span>
+                  <Icon
+                    path={mdiClose}
+                    size={1}
+                    style={{ cursor: "pointer" }}
+                    onClick={() => setMessage(null)}
+                  />
+                </div> : <></>
+            }
+            <div className='card-container'>
+              {products.map(product => (
+                <ProductCard product={product} key={product.id} isCart={false} handleDelete={handleDelete} />
+              ))}
+            </div>
+          </>
+        }
+      </div >
+      {isFiltersClicked ? (
         <>
-          <div className="filter-container">
-            {infoFields.map(field => (
-              <div key={field} className="filter-group">
-                <span>{field.toUpperCase()}:</span>
-                {availableInfoValues[field]?.map((value) => (
-                  <label key={value}>
-                    <input
-                      type="checkbox"
-                      checked={filters[field] === value}
-                      id={value}
-                      onChange={(e) =>
-                        handleFilterChange(field, e.target.checked ? value : '')
-                      }
-                    />
-                    {value}
-                  </label>
-                ))}
-              </div>
-            ))}
-          </div>
-          {
-            message ?
-              <div className={styles["message-container"]}>
-                <span>{message.title} has been deleted!</span>
-                <Icon
-                  path={mdiClose}
-                  size={1}
-                  style={{ cursor: "pointer" }}
-                  onClick={() => setMessage(null)}
-                />
-              </div> : <></>
-          }
-          <div className='card-container'>
-            {products.map(product => (
-              <ProductCard product={product} key={product.id} isCart={false} handleDelete={handleDelete} />
-            ))}
-          </div>
+          <div className="overlay" onClick={() => setIsFiltersClicked(false)}></div>
+          <FiltersSidebar infoFields={infoFields} availableInfoValues={availableInfoValues} filters={filters} handleFilterChange={handleFilterChange} setIsFiltersClicked={setIsFiltersClicked} />
         </>
-      }
-    </div >
+      ) : <></>}
+    </div>
   )
 }
