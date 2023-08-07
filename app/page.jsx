@@ -45,24 +45,21 @@ export default function Home() {
   }
 
   return (
-    <main className={styles["home-container"]}>
+    <section className={styles["home-container"]}>
       <div className={styles["image-container"]}>
         <img className={styles['cover-image']} src='/home-page-cover.jpg' alt='Cover image' />
-        <button className={styles['cover-button']}>SHOP NOW</button>
+        <span>Brand new online technology store bringing you only the finest of products</span>
       </div>
-      <div className={styles["top-text"]}>
-        <p>Brand new online technology store bringing you only the finest of products.</p>
+      <div className={styles["card-outer-container"]}>
+        <h2>Products</h2>
+        <div className={`${styles["card-container"]} container`}>
+          {randomProducts && randomProducts.length > 0 ? (
+            randomProducts.map(product => (
+              <ProductCard product={product} key={product.id} isCart={false} handleDelete={handleDelete} />
+            ))
+          ) : <></>}
+        </div>
       </div>
-      <div className={styles["heading-container"]}>
-        <h2>Check some of our products</h2>
-      </div>
-      <div className={styles['card-container']}>
-        {randomProducts && randomProducts.length > 0 ? (
-          randomProducts.map(product => (
-            <ProductCard product={product} key={product.id} isCart={false} handleDelete={handleDelete} />
-          ))
-        ) : <></>}
-      </div>
-    </main>
+    </section>
   )
 }
