@@ -2,7 +2,7 @@
 
 import Link from "next/link"
 import Icon from '@mdi/react';
-import { mdiMenu, mdiCartVariant, mdiAccount } from '@mdi/js';
+import { mdiChevronDown, mdiCartVariant, mdiAccount } from '@mdi/js';
 import { UserContext } from "../context/userContext";
 import { useContext, useEffect, useState } from "react";
 import Cookies from "js-cookie";
@@ -65,8 +65,8 @@ export default function Nav() {
         <div className="shop">
           <div className="product-menu">
             <div className="product-menu-top" onClick={handleProductDropdown}>
-              <Icon path={mdiMenu} size={1} />
               <span>Products</span>
+              <Icon path={mdiChevronDown} size={1} />
             </div>
             {productDropdown &&
               <div className="products-dropdown">
@@ -87,7 +87,7 @@ export default function Nav() {
               type="text"
               name="search"
               id="search"
-              placeholder="Search for a product"
+              placeholder="Search products"
               onChange={(e) => setSearchProduct(e.target.value)}
             />
           </form>
