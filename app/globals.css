@@ -386,34 +386,48 @@ nav {
 }
 
 .card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 30px;
   width: 100%;
   height: 100%;
-  border-radius: 15px;
+  border-radius: 5px;
+  border: 1px solid #CACACA
+}
+
+.card-top {
+  padding: 10px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
   gap: 10px;
-  padding: 10px;
-  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
   margin: 5px;
 }
 
-.card img {
+.card-img-container {
   max-width: 100%;
+  width: 200px;
   height: 200px;
+}
+
+.card img {
+  width: 100%;
+  height: 100%;
   object-fit: cover;
 }
 
 .card-name {
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 10px;
 }
 
 .card-product-title {
-  font-size: 1.1rem;
-  font-weight: 500;
+  font-size: 1rem;
+  font-weight: 600;
 }
 
 .card-product-price {
@@ -440,22 +454,29 @@ nav {
   width: 100%;
 }
 
-.empty-cart button {
-  padding: 5px;
+.card-admin-actions {
+  display: flex;
+  justify-content: center;
+  width: 100%;
 }
 
+.card-admin-actions button,
 .card-actions button,
 .total-price button,
 .empty-cart button {
   font-size: 1rem;
-  font-weight: 600;
+  font-weight: 500;
   background-color: var(--main-button-color);
   cursor: pointer;
-  border-radius: 15px;
   border: none;
   color: white;
   width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
   height: 40px;
+  padding: 5px;
 }
 
 .card-login {
