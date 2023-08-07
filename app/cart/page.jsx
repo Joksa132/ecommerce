@@ -58,18 +58,20 @@ export default function Cart() {
     }
   }
 
+  const totalPrice = calculateTotalPrice();
+
   return (
-    <div className="card-outer-container">
-      <div className="heading-container">
-        <h1>Cart</h1>
+    <div className="card-outer-container container">
+      <div className="product-page-header">
+        <h2>Cart</h2>
       </div>
       {cartProducts.length ?
         <>
           <div className="total-price">
-            <span>Total Price: {calculateTotalPrice()} RSD</span>
+            <span>Total Price: {totalPrice} RSD</span>
             <button onClick={handleOrderClick}>Order</button>
           </div>
-          <div className="card-container" style={{ marginBottom: "30px" }}>
+          <div className="card-container">
             {cartProducts.map(product => (
               <ProductCard
                 product={product}
