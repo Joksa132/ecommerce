@@ -48,11 +48,13 @@ export default function Home() {
     <section className={styles["home-container"]}>
       <div className={styles["image-container"]}>
         <img className={styles['cover-image']} src='/home-page-cover.jpg' alt='Cover image' />
-        <span>Brand new online technology store bringing you only the finest of products</span>
+        <div className="container">
+          <span>Brand new online technology store bringing you only the finest of products</span>
+        </div>
       </div>
-      <div className={styles["card-outer-container"]}>
+      <div className={`${styles["card-outer-container"]} container`}>
         <h2>Products</h2>
-        <div className={`${styles["card-container"]} container`}>
+        <div className={`${styles["card-container"]}`}>
           {randomProducts && randomProducts.length > 0 ? (
             randomProducts.map(product => (
               <ProductCard product={product} key={product.id} isCart={false} handleDelete={handleDelete} />
