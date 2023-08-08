@@ -736,3 +736,14 @@ nav {
     font-size: 0.8rem;
   }
 }
+
+@media (max-width: 450px) {
+  .orders-table {
+    font-size: 0.6rem;
+  }
+
+  .orders-table th,
+  .orders-table td {
+    padding: 0.1rem;
+  }
+}
