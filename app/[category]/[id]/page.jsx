@@ -39,7 +39,7 @@ export default function ProductDetails({ params }) {
   }, [])
 
   return (
-    <div className={styles.container}>
+    <div className="container">
       {pageLoading ?
         <div className="loading-spinner"></div> :
         <>
