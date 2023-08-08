@@ -84,38 +84,35 @@ export default function CategoryProducts({ params }) {
 
   return (
     <div className="product-page-container">
-      <div className="card-outer-container container">
-        <div className="product-page-header">
-          <h1>{category}</h1>
-          <span onClick={() => setIsFiltersClicked(true)}>
-            <Icon path={mdiFilterVariant} size={1} />
-            Filter
-          </span>
-        </div>
-        {pageLoading ?
-          <div className="loading-spinner"></div>
-          :
-          <>
-            {
-              message ?
-                <div className={styles["message-container"]}>
-                  <span>{message.title} has been deleted!</span>
-                  <Icon
-                    path={mdiClose}
-                    size={1}
-                    style={{ cursor: "pointer" }}
-                    onClick={() => setMessage(null)}
-                  />
-                </div> : <></>
-            }
-            <div className='card-container'>
-              {products.map(product => (
-                <ProductCard product={product} key={product.id} isCart={false} handleDelete={handleDelete} />
-              ))}
-            </div>
-          </>
-        }
-      </div >
+      {pageLoading ?
+        <div className="loading-spinner"></div>
+        :
+        <div className="card-outer-container container">
+          <div className="product-page-header">
+            <h1>{category}</h1>
+            <span onClick={() => setIsFiltersClicked(true)}>
+              <Icon path={mdiFilterVariant} size={1} />
+              Filter
+            </span>
+          </div>
+          {message ?
+            <div className={styles["message-container"]}>
+              <span>{message.title} has been deleted!</span>
+              <Icon
+                path={mdiClose}
+                size={1}
+                style={{ cursor: "pointer" }}
+                onClick={() => setMessage(null)}
+              />
+            </div> : <></>
+          }
+          <div className='card-container'>
+            {products.map(product => (
+              <ProductCard product={product} key={product.id} isCart={false} handleDelete={handleDelete} />
+            ))}
+          </div>
+        </div >
+      }
       {isFiltersClicked ? (
         <>
           <div className="overlay" onClick={() => setIsFiltersClicked(false)}></div>
