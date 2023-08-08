@@ -18,7 +18,7 @@
 }
 
 .product-info h1 {
-  font-size: 3rem;
+  font-size: 2rem;
   margin-bottom: 10px;
 }
 
@@ -93,10 +93,6 @@
   .main-container {
     gap: 50px;
   }
-
-  .product-info h1 {
-    font-size: 2.5rem;
-  }
 }
 
 @media (max-width: 900px) {
@@ -106,11 +102,25 @@
   }
 
   .product-info h1 {
-    font-size: 2rem;
+    font-size: 1.5rem;
   }
 
   .main-container {
     gap: 40px;
+  }
+
+  .info-container button {
+    font-size: 1.4rem;
+  }
+
+  .product-additional-info {
+    font-size: 1rem;
+    margin-top: 3px;
+    gap: 4px;
+  }
+
+  .product-info p {
+    font-size: 1rem;
   }
 }
 
@@ -119,6 +129,12 @@
     height: 500px;
     width: 300px;
   }
+
+  .price-info {
+    font-size: 18px;
+    padding: 6px 16px 3px 16px;
+  }
+
 }
 
 @media (max-width: 650px) {
@@ -142,15 +158,5 @@
 
   .info-container button {
     font-size: 1.2rem;
-  }
-
-  .product-additional-info {
-    font-size: 1rem;
-    margin-top: 3px;
-    gap: 4px;
-  }
-
-  .product-info p {
-    font-size: 1rem;
   }
 }
