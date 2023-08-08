@@ -313,6 +313,18 @@ nav {
   flex-direction: column;
 }
 
+@media (max-width: 500px) {
+  .form-container {
+    width: 300px;
+  }
+}
+
+@media (max-width: 350px) {
+  .form-container {
+    width: 250px;
+  }
+}
+
 /* SPINNER */
 
 @keyframes spinner {
