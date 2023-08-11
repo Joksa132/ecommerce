@@ -25,7 +25,7 @@ export default function Cart() {
       const productPrice = product.price * quantity
       totalPrice += productPrice
     }
-    return totalPrice;
+    return totalPrice.toFixed(3);
   }
 
   const handleOrderClick = async () => {
