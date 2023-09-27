@@ -10,7 +10,7 @@ export default function Home() {
   useEffect(() => {
     async function fetchRandomProducts() {
       try {
-        const res = await fetch(`/api/products/random?timestamp=' + ${Date.now()}`, {
+        const res = await fetch(`/api/products/random?timestamp=${Date.now()}`, {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json'
