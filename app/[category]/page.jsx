@@ -1,20 +1,20 @@
-"use client"
+"use client";
 
-import { useEffect, useState } from "react"
-import styles from './category.module.css'
-import Icon from '@mdi/react';
-import { mdiClose, mdiFilterVariant } from '@mdi/js';
+import { useEffect, useState } from "react";
+import styles from "./category.module.css";
+import Icon from "@mdi/react";
+import { mdiClose, mdiFilterVariant } from "@mdi/js";
 import ProductCard from "../../components/ProductCard";
 import FiltersSidebar from "@/components/FiltersSidebar";
 
 export default function CategoryProducts({ params }) {
-  const { category } = params
-  const [products, setProducts] = useState([])
-  const [allProducts, setAllProducts] = useState([])
-  const [message, setMessage] = useState(null)
-  const [filters, setFilters] = useState({})
-  const [pageLoading, setPageLoading] = useState(true)
-  const [isFiltersClicked, setIsFiltersClicked] = useState(false)
+  const { category } = params;
+  const [products, setProducts] = useState([]);
+  const [allProducts, setAllProducts] = useState([]);
+  const [message, setMessage] = useState(null);
+  const [filters, setFilters] = useState({});
+  const [pageLoading, setPageLoading] = useState(true);
+  const [isFiltersClicked, setIsFiltersClicked] = useState(false);
 
   useEffect(() => {
     async function fetchProducts() {
@@ -22,54 +22,40 @@ export default function CategoryProducts({ params }) {
         const queryString = new URLSearchParams(filters).toString();
 
         const res = await fetch(`/api/products/${category}?${queryString}`, {
-          method: 'GET',
+          method: "GET",
           headers: {
-            'Content-Type': 'application/json'
-          }
-        })
+            "Content-Type": "application/json",
+          },
+        });
 
         const data = await res.json();
-        setProducts(data.products)
-        setAllProducts(data.allProducts)
-        setPageLoading(false)
+        setProducts(data.products);
+        setAllProducts(data.allProducts);
+        setPageLoading(false);
+      } catch (error) {
+        console.log(error);
       }
-      catch (error) {
-        console.log(error)
-      }
     }
 
-    fetchProducts()
-  }, [filters])
+    fetchProducts();
+  }, [filters]);
 
-  const handleDelete = async (id) => {
-    try {
-      const res = await fetch(`/api/products/delete/${id}`, {
-        method: 'DELETE',
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      })
-      const data = await res.json()
-      setMessage(data.deletedProduct)
-      setProducts(products.filter(product => product.id !== id))
-    }
-    catch (error) {
-      console.log(error)
-    }
-  }
-
-  const infoFields = ['ram', 'storage', 'display', 'os', 'battery'];
+  const infoFields = ["ram", "storage", "display", "os", "battery"];
   const availableInfoValues = infoFields.reduce((values, field) => {
-    const uniqueValues = Array.from(new Set(allProducts.map(product => product.info?.[field]))).filter(Boolean);
-    const sortedValues = uniqueValues.sort((a, b) => a.localeCompare(b, undefined, { numeric: true }));
+    const uniqueValues = Array.from(
+      new Set(allProducts.map(product => product.info?.[field]))
+    ).filter(Boolean);
+    const sortedValues = uniqueValues.sort((a, b) =>
+      a.localeCompare(b, undefined, { numeric: true })
+    );
     return {
       ...values,
-      [field]: sortedValues
+      [field]: sortedValues,
     };
   }, {});
 
   const handleFilterChange = (field, value) => {
-    setFilters((prevFilters) => {
+    setFilters(prevFilters => {
       const updatedFilters = { ...prevFilters };
 
       if (value) {
@@ -84,9 +70,9 @@ export default function CategoryProducts({ params }) {
 
   return (
     <div className="product-page-container">
-      {pageLoading ?
+      {pageLoading ? (
         <div className="loading-spinner"></div>
-        :
+      ) : (
         <div className="card-outer-container container">
           <div className="product-page-header">
             <h1>{category}</h1>
@@ -95,7 +81,7 @@ export default function CategoryProducts({ params }) {
               Filter
             </span>
           </div>
-          {message ?
+          {message ? (
             <div className={styles["message-container"]}>
               <span>{message.title} has been deleted!</span>
               <Icon
@@ -104,21 +90,34 @@ export default function CategoryProducts({ params }) {
                 style={{ cursor: "pointer" }}
                 onClick={() => setMessage(null)}
               />
-            </div> : <></>
-          }
-          <div className='card-container'>
+            </div>
+          ) : (
+            <></>
+          )}
+          <div className="card-container">
             {products.map(product => (
-              <ProductCard product={product} key={product.id} isCart={false} handleDelete={handleDelete} />
+              <ProductCard product={product} key={product.id} isCart={false} />
             ))}
           </div>
-        </div >
-      }
+        </div>
+      )}
       {isFiltersClicked ? (
         <>
-          <div className="overlay" onClick={() => setIsFiltersClicked(false)}></div>
-          <FiltersSidebar infoFields={infoFields} availableInfoValues={availableInfoValues} filters={filters} handleFilterChange={handleFilterChange} setIsFiltersClicked={setIsFiltersClicked} />
+          <div
+            className="overlay"
+            onClick={() => setIsFiltersClicked(false)}
+          ></div>
+          <FiltersSidebar
+            infoFields={infoFields}
+            availableInfoValues={availableInfoValues}
+            filters={filters}
+            handleFilterChange={handleFilterChange}
+            setIsFiltersClicked={setIsFiltersClicked}
+          />
         </>
-      ) : <></>}
+      ) : (
+        <></>
+      )}
     </div>
-  )
+  );
 }
