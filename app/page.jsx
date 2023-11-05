@@ -1,55 +1,47 @@
-"use client"
+import styles from "./home.module.css";
+import ProductCard from "../components/ProductCard";
+import prisma from "@/prisma/prisma";
+import { revalidatePath } from "next/cache";
 
-import { useEffect, useState } from "react"
-import styles from "./home.module.css"
-import ProductCard from "../components/ProductCard"
+function shuffleArray(array) {
+  const shuffledArray = [...array];
 
-export default function Home() {
-  const [randomProducts, setRandomProducts] = useState([])
-
-  useEffect(() => {
-    async function fetchRandomProducts() {
-      const timestamp = Date.now()
-      try {
-        const res = await fetch(`/api/products/random?timestamp=${timestamp}`, {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-          },
-        })
-        const data = await res.json()
-        setRandomProducts(data.randomProducts)
-        console.log(data)
-      } catch (error) {
-        console.log(error)
-      }
-    }
-
-    fetchRandomProducts()
-  }, [])
-
-  const handleDelete = async id => {
-    try {
-      const res = await fetch(`/api/products/delete/${id}`, {
-        method: "DELETE",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      })
-      const data = await res.json()
-
-      setRandomProducts(randomProducts.filter(product => product.id !== id))
-    } catch (error) {
-      console.log(error)
-    }
+  for (let i = shuffledArray.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [shuffledArray[i], shuffledArray[j]] = [shuffledArray[j], shuffledArray[i]];
   }
+
+  return shuffledArray;
+}
+
+async function fetchProducts() {
+  const products = await prisma.product.findMany({
+    include: {
+      categories: true,
+    },
+  });
+
+  const randomProducts = shuffleArray(products).slice(0, 4);
+  revalidatePath("/");
+  return randomProducts;
+}
+
+export default async function Home() {
+  const randomProducts = await fetchProducts();
 
   return (
     <section className={styles["home-container"]}>
       <div className={styles["image-container"]}>
-        <img className={styles["cover-image"]} src="/home-page-cover.jpg" alt="Cover image" />
+        <img
+          className={styles["cover-image"]}
+          src="/home-page-cover.jpg"
+          alt="Cover image"
+        />
         <div className="container">
-          <span>Brand new online technology store bringing you only the finest of products</span>
+          <span>
+            Brand new online technology store bringing you only the finest of
+            products
+          </span>
         </div>
       </div>
       <div className={`${styles["card-outer-container"]} container`}>
@@ -57,12 +49,7 @@ export default function Home() {
         <div className={`${styles["card-container"]}`}>
           {randomProducts && randomProducts.length > 0 ? (
             randomProducts.map(product => (
-              <ProductCard
-                product={product}
-                key={product.id}
-                isCart={false}
-                handleDelete={handleDelete}
-              />
+              <ProductCard product={product} key={product.id} isCart={false} />
             ))
           ) : (
             <></>
@@ -70,5 +57,5 @@ export default function Home() {
         </div>
       </div>
     </section>
-  )
+  );
 }
