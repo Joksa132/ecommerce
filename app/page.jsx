@@ -2,6 +2,7 @@ import styles from "./home.module.css";
 import ProductCard from "../components/ProductCard";
 import prisma from "@/prisma/prisma";
 import { revalidatePath } from "next/cache";
+import { unstable_noStore as noStore } from "next/cache";
 
 function shuffleArray(array) {
   const shuffledArray = [...array];
@@ -23,6 +24,7 @@ async function fetchProducts() {
 
   const randomProducts = shuffleArray(products).slice(0, 4);
   revalidatePath("/");
+  noStore();
   return randomProducts;
 }
 
@@ -48,7 +50,7 @@ export default async function Home() {
         <h2>Products</h2>
         <div className={`${styles["card-container"]}`}>
           {randomProducts && randomProducts.length > 0 ? (
-            randomProducts.map(product => (
+            randomProducts.map((product) => (
               <ProductCard product={product} key={product.id} isCart={false} />
             ))
           ) : (
